@@ -11,12 +11,12 @@ export default function () {
       ]
     },
     {
-      "figure": "15+",
+      "figure": "17",
       "title": "Years",
       "bullets": [
         "Delivering digital projects from concept to launch since 2009",
         "8+ years focused on ESG and corporate communications",
-        "15 years of frontend engineering and long-term client partnerships"
+        "17 years of frontend engineering and long-term client partnerships"
       ]
     },
     {
@@ -31,7 +31,7 @@ export default function () {
     },
     {
       "figure": "1B+",
-      "title": "1.000 Millions of Readers Served",
+      "title": "Readers Served",
       "bullets": [
         "Axios, The Dodo & other major media platforms",
         "High-traffic publishing ecosystems",
