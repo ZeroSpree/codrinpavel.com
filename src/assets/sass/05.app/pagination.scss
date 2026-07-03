@@ -1,0 +1,8 @@
+.pagination {
+  margin-top: var(--footer-spacing);
+  padding-top: var(--size-10xl);
+
+  &__label {
+    display: block;
+  }
+}

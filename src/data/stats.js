@@ -1,7 +1,7 @@
 export default function () {
   return [
     {
-      "figure": "80+",
+      "figure": "85+",
       "title": "Projects",
       "bullets": [
         "24 CSR, DEI, ESG & Annual Report Websites",

@@ -3,6 +3,7 @@
 .home {
   img {
     height: 100%;
+    max-height: fit-content;
     aspect-ratio: 460 / 763;
     filter: grayscale(1);
 

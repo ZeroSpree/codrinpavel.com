@@ -12,5 +12,16 @@ layout: base.njk
     <div class="columns md:--column-gap-2xl md:--row-gap-2xl">
       {{ content | safe }}
     </div>
+
+    <footer class="pagination">
+      <div class="columns columns-6 md:columns-5 justify-end --row-gap-4xl">
+        {% for item in collections.work | order %}
+          <a href="{{ item.url | url }}" data-reveal data-stagger="100" {% if page.url == item.url %} aria-current="page"{% endif %}>
+            <div>{{ loop.index < 10 and '0' + loop.index or loop.index }}.</div>
+            <h2>{{item.data.long or item.data.title}}</h2>
+          </a>
+        {% endfor %}
+      </div>
+    </footer>
   </div>
 </section>

@@ -7,6 +7,17 @@
   background: var(--color-gray);
   clip-path: inset(1px 0);
 
+  ~.card~.card {
+    transform: translateX(50%);
+    animation: cardreveal ease-out forwards;
+    animation-timeline: view();
+    animation-range: entry 0% entry 50svh;
+
+    &:nth-child(even) {
+      transform: translateX(55%);
+    }
+  }
+
   @media (hover: hover) and (pointer: fine) {
 
     &:hover,
@@ -68,5 +79,12 @@
     figure {
       aspect-ratio: 4/3;
     }
+  }
+}
+
+
+@keyframes cardreveal {
+  to {
+    transform: translateX(0);
   }
 }

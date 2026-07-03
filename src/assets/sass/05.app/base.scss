@@ -7,6 +7,7 @@
 html, body {
   cursor: default;
   background: var(--color-white);
+  overflow-x: clip;
 }
 
 html, body,
@@ -28,7 +29,7 @@ main,
 }
 
 section {
-  padding: var(--size-header-offset) var(--grid-margin) calc(var(--footer-spacing));
+  padding: var(--size-header-offset) var(--grid-margin) var(--footer-spacing);
 
   &.fullscreen {
     padding: var(--size-header-offset) var(--grid-margin) 0;
