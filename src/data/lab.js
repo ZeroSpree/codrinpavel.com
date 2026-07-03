@@ -39,7 +39,7 @@ export default function () {
     {
       title: "CSSans Pro",
       period: "2019",
-      thumb: "lab/cssans.pro.jpg",
+      thumb: "lab/cssans.iop_.jpg",
       extra: {
         "Design": "Andronache Izabela"
       },

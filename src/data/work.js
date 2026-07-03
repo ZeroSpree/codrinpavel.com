@@ -569,7 +569,7 @@ export default function () {
     {
       year: 2018,
       client: "Ideas On Purpose",
-      project: "Creative Agency website",
+      project: "Agency website",
       tags: ["award"],
       url: "https://www.ideasonpurpose.com",
       awards: [

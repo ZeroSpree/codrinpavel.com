@@ -4,13 +4,15 @@
   display: none;
 }
 
-html, body {
+html,
+body {
   cursor: default;
   background: var(--color-white);
   overflow-x: clip;
 }
 
-html, body,
+html,
+body,
 section,
 main,
 .lenis {
@@ -47,6 +49,13 @@ section {
     min-height: calc(100svh - var(--size-header-offset) - var(--footer-height) - var(--size-10xl) - 10vh);
     margin-bottom: var(--size-10xl);
   }
+}
+
+img,
+video {
+  max-height: calc(100svh - var(--header-height) - var(--footer-height));
+  width: auto;
+  margin-inline: auto;
 }
 
 iframe {

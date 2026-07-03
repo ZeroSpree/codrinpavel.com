@@ -21,35 +21,10 @@
         padding-bottom: 6px;
       }
     }
-
-    &:not(:first-child) {
-      &:hover~li {
-        color: var(--color-faint);
-      }
-
-      &:has(~ li:hover) {
-        color: var(--color-faint);
-      }
-    }
   }
 
   span:last-child {
     text-align: right;
-  }
-
-  @include mq(md) {
-    a {
-      span:first-child::after {
-        content: "▪";
-        color: var(--color-faint);
-        margin-left: auto;
-      }
-
-      &:hover span:first-child::after {
-        content: "→";
-        color: var(--color-black);
-      }
-    }
   }
 
   @include mq(md, max) {
@@ -59,6 +34,32 @@
 
     span:last-child {
       display: none;
+    }
+  }
+
+  @include mq(md) {
+    a span:first-child::after {
+      content: "▪";
+      color: var(--color-faint);
+      margin-left: auto;
+    }
+  }
+
+
+  @media (hover: hover) and (pointer: fine) {
+    li:not(:first-child) {
+
+      &:hover~li,
+      &:has(~ li:hover) {
+        color: var(--color-faint);
+      }
+    }
+
+    @include mq(md) {
+      a:hover span:first-child::after {
+        content: "→";
+        color: var(--color-black);
+      }
     }
   }
 }

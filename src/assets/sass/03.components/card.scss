@@ -8,28 +8,12 @@
   clip-path: inset(1px 0);
 
   ~.card~.card {
-    transform: translateX(50%);
     animation: cardreveal ease-out forwards;
     animation-timeline: view();
     animation-range: entry 0% entry 50svh;
 
     &:nth-child(even) {
       transform: translateX(55%);
-    }
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-
-    &:hover,
-    &:focus-visible {
-      img {
-        object-fit: cover;
-        object-position: bottom center;
-        filter: none;
-        height: 50svh;
-        transition: object-position ease 8s;
-        transition-delay: 333ms;
-      }
     }
   }
 
@@ -48,8 +32,19 @@
     width: 100%;
     object-position: top center;
     object-fit: contain;
-    filter: grayscale(.96) contrast(1.4) brightness(1.05);
+    filter: grayscale(1) contrast(1.4) brightness(1.05);
     clip-path: inset(1px 0px);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover,
+    &:focus-visible {
+      img {
+        object-fit: cover;
+        object-position: bottom center;
+        transition: object-position ease 6s;
+      }
+    }
   }
 
   svg {
@@ -84,7 +79,12 @@
 
 
 @keyframes cardreveal {
+  from {
+    opacity: 0;
+    transform: translateX(50%);
+  }
   to {
+    opacity: 1;
     transform: translateX(0);
   }
 }

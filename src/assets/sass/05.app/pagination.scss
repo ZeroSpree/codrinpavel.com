@@ -1,8 +1,13 @@
 .pagination {
-  margin-top: var(--footer-spacing);
-  padding-top: var(--size-10xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100svh - var(--footer-spacing) - var(--footer-spacing) - var(--footer-height));
 
-  &__label {
-    display: block;
+  padding-block: var(--size-6xl);
+  margin-top: var(--footer-spacing);
+
+  a {
+    padding-block: var(--size-lg);
   }
 }

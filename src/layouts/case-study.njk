@@ -14,11 +14,11 @@ layout: base.njk
     </div>
 
     <footer class="pagination">
-      <div class="columns columns-6 md:columns-5 justify-end --row-gap-4xl">
+      <div class="columns columns-6 md:columns-5 justify-end --row-gap-zero">
         {% for item in collections.work | order %}
-          <a href="{{ item.url | url }}" data-reveal data-stagger="100" {% if page.url == item.url %} aria-current="page"{% endif %}>
+          <a href="{{ item.url | url }}" data-reveal data-stagger="150" {% if page.url == item.url %} aria-current="page"{% endif %}>
             <div>{{ loop.index < 10 and '0' + loop.index or loop.index }}.</div>
-            <h2>{{item.data.long or item.data.title}}</h2>
+            <h2 class="mb-zero" data-title="{{item.data.type}}">{{item.data.long or item.data.title}}</h2>
           </a>
         {% endfor %}
       </div>
