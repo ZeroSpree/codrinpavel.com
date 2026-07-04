@@ -4,6 +4,8 @@
   position: relative;
 
   li {
+    flex-wrap: nowrap;
+    white-space: nowrap;
     overflow: hidden;
     line-height: 1.4;
 

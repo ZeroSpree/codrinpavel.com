@@ -71,4 +71,61 @@
   work.addEventListener("focusout", event => {
     if (!work.contains(event.relatedTarget)) resetHeader();
   });
+
+
+
+
+
+
+  const isTouch = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+
+  if (isTouch && "IntersectionObserver" in window) {
+    const visibleRows = new Set();
+
+    const getFooterHeight = () => {
+      const value = getComputedStyle(document.documentElement).getPropertyValue("--footer-height");
+      return parseFloat(value) + 14 || 0;
+    };
+
+    const updateHeaderFromVisibleRows = () => {
+      const footerHeight = getFooterHeight();
+      const visibleBottom = window.innerHeight - footerHeight;
+
+      const current = [...visibleRows]
+        .map(row => data.find(item => item.row === row))
+        .filter(Boolean)
+        .filter(item => {
+          const rect = item.row.getBoundingClientRect();
+
+          return rect.top < visibleBottom && rect.bottom > 0;
+        })
+        .sort((a, b) => {
+          const aBottom = Math.min(a.row.getBoundingClientRect().bottom, visibleBottom);
+          const bBottom = Math.min(b.row.getBoundingClientRect().bottom, visibleBottom);
+
+          return aBottom - bBottom;
+        })
+        .at(-1);
+
+      if (current) setHeader(current);
+      else resetHeader();
+    };
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) visibleRows.add(entry.target);
+        else visibleRows.delete(entry.target);
+      });
+
+      updateHeaderFromVisibleRows();
+    }, {
+      root: null,
+      rootMargin: `0px 0px -${getFooterHeight()}px 0px`,
+      threshold: 0
+    });
+
+    data.forEach(item => observer.observe(item.row));
+
+    window.addEventListener("resize", updateHeaderFromVisibleRows);
+  }
 })();
