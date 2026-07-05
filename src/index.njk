@@ -40,12 +40,16 @@ meta_title: "Codrin Pavel — Independent Frontend Partner"
             <div class="card__index">{{ i < 10 and '0' + i or i }}.</div>
             <h2>{{page.data.type}}</h2>
 
-            <figure >
+            <figure>
               {% svg svg_url, "" %}
             </figure>
           </a>
         {% endif %}
       {% endfor %}
+
+      <div class="md:columns-10 mt-2xl">
+        <a class="link link--arrow text-md" href="{{"/work/" | url}}">See more case studies</a>
+      </div>
     </div>
 
     <div class="columns --row-gap-8xl mt-10xl pt-10xl">
@@ -69,11 +73,13 @@ meta_title: "Codrin Pavel — Independent Frontend Partner"
         {%- endfor -%}
         </p>
 
-        <p class="flex flex-wrap">
+        <p class="flex flex-wrap mb-2xl">
         {%- for char in desc3.split(' ') -%}
           <span class="overflow-hidden flex"><i data-reveal data-stagger="5">{{ char }}</i>&nbsp;</span>
         {%- endfor -%}
         </p>
+
+        <a data-reveal href="{{ "/readme/" | url }}" class="link link--arrow">What's it like working with me</a>
       </div>
 
       <div class="columns-6 md:columns-3 md:ml-2" data-reveal-batch>

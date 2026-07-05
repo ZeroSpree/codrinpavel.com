@@ -1,10 +1,17 @@
 .link {
+  position: relative;
   text-decoration: none;
   background-image: linear-gradient(currentColor, currentColor);
   background-repeat: no-repeat;
   background-position: 100% 100%;
   background-size: 0 1px;
   transition: background-size .3s, color .3s;
+
+  &--arrow::after {
+    content: "→";
+    position: absolute;
+    left: calc(100% + 4px);
+  }
 
   &:hover,
   &:focus-visible {
