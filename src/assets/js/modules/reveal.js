@@ -11,7 +11,7 @@
 
 const SELECTOR = "[data-reveal],[data-inview]";
 const BATCH_SELECTOR = "[data-reveal-batch]";
-
+const START_DELAY_MS = 500;
 const INVIEW_CLASS = "is-inview";
 
 const DEFAULT_STAGGER_MS = 25;
@@ -240,16 +240,27 @@ function toNumber(value, fallback) {
   return Number.isFinite(number) ? number : fallback;
 }
 
+let initTimer = 0;
+
+function startReveals() {
+  clearTimeout(initTimer);
+
+  initTimer = setTimeout(() => {
+    initReveals();
+  }, START_DELAY_MS);
+}
+
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initReveals, { once: true });
+  document.addEventListener("DOMContentLoaded", startReveals, { once: true });
 } else {
-  initReveals();
+  startReveals();
 }
 
 window.addEventListener("pageshow", event => {
   if (event.persisted) {
-    initReveals();
+    startReveals();
   }
 });
 
 window.initReveals = initReveals;
+window.startReveals = startReveals;

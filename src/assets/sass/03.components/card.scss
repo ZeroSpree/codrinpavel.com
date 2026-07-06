@@ -1,13 +1,6 @@
 @use "../mixins" as *;
 
-.card {
-  position: relative;
-  z-index: 2;
-
-  background: var(--color-gray);
-  clip-path: inset(1px 0);
-
-  ~.card~.card {
+.home .card~.card~.card {
     animation: cardreveal ease-out forwards;
     animation-timeline: view();
     animation-range: entry 0% entry 50svh;
@@ -16,6 +9,13 @@
       transform: translateX(55%);
     }
   }
+
+.card {
+  position: relative;
+  z-index: 2;
+
+  background: var(--color-gray);
+  clip-path: inset(1px 0);
 
   figure {
     width: 100%;

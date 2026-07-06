@@ -69,12 +69,37 @@ iframe {
   navigation: auto;
 }
 
-::view-transition-old(root) {
-  animation: fade-out 450ms ease forwards;
+main {
+  view-transition-name: page-main;
+}
+
+::view-transition-old(page-main) {
+  opacity: 1;
+  animation: fade-out 450ms ease both;
+  mix-blend-mode: normal;
+}
+
+::view-transition-new(page-main) {
+  opacity: 0;
+  animation: hold-new 450ms step-end both;
+  mix-blend-mode: normal;
 }
 
 @keyframes fade-out {
+  from {
+    opacity: 1;
+  }
   to {
     opacity: 0;
+  }
+}
+
+@keyframes hold-new {
+  0%, 99.999% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }
