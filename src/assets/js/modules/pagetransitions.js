@@ -2,6 +2,7 @@ import { closeMenu } from "./menu";
 
 document.addEventListener("click", (event) => {
   const link = event.target.closest("a");
+  let timeout = 250;
 
   if (!link) return;
   if (event.defaultPrevented) return;
@@ -27,6 +28,7 @@ document.addEventListener("click", (event) => {
 
 
   if (document.body.classList.contains("menu-open")) {
+    timeout = 600;
     closeMenu({ restoreFocus: false });
     const main = document.querySelector("main");
 
@@ -57,5 +59,5 @@ document.addEventListener("click", (event) => {
 
   setTimeout(() => {
     window.location.href = url.href;
-  }, 666);
+  }, timeout);
 });

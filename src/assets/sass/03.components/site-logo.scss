@@ -17,11 +17,11 @@
 
    &.is-inview {
     span:first-child {
-      animation: logo-slide-up 666ms ease both;
+      animation: logo-slide-up 600ms ease both;
     }
 
     span:last-child {
-      animation: logo-slide-in 666ms ease both;
+      animation: logo-slide-in 600ms ease both;
     }
   }
 }

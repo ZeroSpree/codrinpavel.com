@@ -1,9 +1,0 @@
-@use "../mixins" as *;
-
-.vt-logo-1 { view-transition-name: vtlogo1; }
-.vt-logo-2 { view-transition-name: vtlogo2; }
-
-::view-transition-old(vtlogo1) { animation-name: fly-to-top; }
-::view-transition-new(vtlogo1) { animation-name: fly-from-bottom; }
-::view-transition-old(vtlogo2) { animation-name: fly-to-bottom; }
-::view-transition-new(vtlogo2) { animation-name: fly-from-top; }
