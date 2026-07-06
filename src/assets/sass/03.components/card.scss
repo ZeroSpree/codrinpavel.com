@@ -43,6 +43,8 @@
         object-fit: cover;
         object-position: bottom center;
         transition: object-position ease 6s;
+        filter: none;
+        width: 100% !important;
       }
     }
   }
