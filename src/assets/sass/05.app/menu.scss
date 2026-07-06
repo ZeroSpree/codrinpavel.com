@@ -93,7 +93,7 @@
       transform: translateY(-110%);
       transition: opacity, transform;
       transition-delay: calc(0ms);
-      transition-duration: 0ms, 0ms;
+      transition-duration: 250ms, 250ms;
     }
 
     &-open {

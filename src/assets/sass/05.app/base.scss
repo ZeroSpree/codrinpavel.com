@@ -16,6 +16,10 @@ main {
   transition: opacity 450ms ease;
 }
 
+html.is-leaving .menu-open main {
+  transition-duration: 0ms;
+}
+
 html.is-leaving main {
   opacity: 0;
 }
