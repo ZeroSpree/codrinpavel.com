@@ -34,23 +34,34 @@
     return map;
   }, new Map());
 
+  const setCurrentRow = item => {
+    data.forEach(entry => {
+      entry.row.toggleAttribute("data-current", entry === item);
+    });
+  };
+
+  const clearCurrentRow = () => {
+    data.forEach(entry => {
+      entry.row.removeAttribute("data-current");
+    });
+  };
+
   const setHeader = item => {
     const group = byClient.get(item.client) || [item];
     const years = group.map(entry => entry.year).filter(Boolean);
     const minYear = Math.min(...years);
     const maxYear = Math.max(...years);
     const count = group.length;
-    const hasCaseStudy = group.some(entry => entry.hasCaseStudy);
 
-    headerCells[0].textContent = `${count === 1 ? "Single Project" : `${count} Projects`}`;
+    headerCells[0].textContent = count === 1 ? "Single Project" : `${count} Projects`;
     headerCells[1].textContent = item.client;
     headerCells[2].textContent =
       minYear === maxYear
         ? `${maxYear}`
         : `${minYear}–${maxYear}`;
 
-    work.dataset.hovering = "true";
     work.dataset.client = item.client;
+    setCurrentRow(item);
   };
 
   const resetHeader = () => {
@@ -58,8 +69,8 @@
       cell.textContent = defaults[index];
     });
 
-    delete work.dataset.hovering;
     delete work.dataset.client;
+    clearCurrentRow();
   };
 
   data.forEach(item => {
@@ -68,14 +79,10 @@
   });
 
   work.addEventListener("mouseleave", resetHeader);
+
   work.addEventListener("focusout", event => {
     if (!work.contains(event.relatedTarget)) resetHeader();
   });
-
-
-
-
-
 
   const isTouch = window.matchMedia("(hover: none), (pointer: coarse)").matches;
 
@@ -83,7 +90,9 @@
     const visibleRows = new Set();
 
     const getFooterHeight = () => {
-      const value = getComputedStyle(document.documentElement).getPropertyValue("--footer-height");
+      const value = getComputedStyle(document.documentElement)
+        .getPropertyValue("--footer-height");
+
       return parseFloat(value) + 14 || 0;
     };
 
@@ -100,8 +109,15 @@
           return rect.top < visibleBottom && rect.bottom > 0;
         })
         .sort((a, b) => {
-          const aBottom = Math.min(a.row.getBoundingClientRect().bottom, visibleBottom);
-          const bBottom = Math.min(b.row.getBoundingClientRect().bottom, visibleBottom);
+          const aBottom = Math.min(
+            a.row.getBoundingClientRect().bottom,
+            visibleBottom
+          );
+
+          const bBottom = Math.min(
+            b.row.getBoundingClientRect().bottom,
+            visibleBottom
+          );
 
           return aBottom - bBottom;
         })

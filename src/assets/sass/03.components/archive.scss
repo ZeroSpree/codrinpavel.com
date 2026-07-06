@@ -64,4 +64,15 @@
       }
     }
   }
+
+  @media (hover: none), (pointer: coarse) {
+    li:not(:first-child):has(~ li[data-current]),
+    li[data-current]~li {
+      color: var(--color-faint);
+    }
+
+    li[data-current] {
+      color: inherit;
+    }
+  }
 }
