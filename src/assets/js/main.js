@@ -5,3 +5,4 @@ import './modules/archive.js';
 
 // animations
 import './modules/reveal.js';
+import './modules/pagetransitions.js';

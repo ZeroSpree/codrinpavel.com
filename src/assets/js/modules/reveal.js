@@ -11,7 +11,7 @@
 
 const SELECTOR = "[data-reveal],[data-inview]";
 const BATCH_SELECTOR = "[data-reveal-batch]";
-const START_DELAY_MS = 500;
+const START_DELAY_MS = 1;
 const INVIEW_CLASS = "is-inview";
 
 const DEFAULT_STAGGER_MS = 25;
