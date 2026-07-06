@@ -31,6 +31,8 @@ document.addEventListener("click", (event) => {
 
   if (nav) {
     nav.querySelectorAll("a").forEach((navLink) => {
+      if (navLink.classList.contains("site-logo")) return;
+
       navLink.classList.remove("color-faint");
       navLink.removeAttribute("aria-current");
 
