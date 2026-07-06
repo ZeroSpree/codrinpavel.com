@@ -63,3 +63,18 @@ iframe {
   height: auto;
   aspect-ratio: 16 / 9;
 }
+
+
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: fade-out 450ms ease forwards;
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
