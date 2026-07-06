@@ -25,7 +25,15 @@ document.addEventListener("click", (event) => {
     return;
   }
 
-  closeMenu({ restoreFocus: false });
+
+  if (document.body.classList.contains("menu-open")) {
+    closeMenu({ restoreFocus: false });
+    const main = document.querySelector("main");
+
+    if (main) {
+      main.style.transitionDuration = "0s";
+    }
+  }
 
   const nav = document.querySelector(".header__nav");
 

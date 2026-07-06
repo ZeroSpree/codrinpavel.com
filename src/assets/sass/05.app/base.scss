@@ -13,11 +13,7 @@ body {
 
 main {
   opacity: 1;
-  transition: opacity 450ms ease;
-}
-
-html.is-leaving .menu-open main {
-  transition-duration: 0ms;
+  transition: opacity 666ms ease;
 }
 
 html.is-leaving main {
