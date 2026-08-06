@@ -43,7 +43,7 @@
 
   .tag {
     position: fixed;
-    bottom: var(--size-2xl);
+    bottom: calc(env(safe-area-inset-bottom) + var(--size-2xl));
   }
 }
 

@@ -38,7 +38,10 @@ export default async function (content) {
           /lenis/,
           /data-/,
           /sr-only/,
-          /aria/
+          /aria/,
+          /word-split--finished/,
+          /page-transition--home/,
+          /^header/
         ]
       }
     });
