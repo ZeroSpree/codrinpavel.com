@@ -41,7 +41,11 @@ export default async function (content) {
           /aria/,
           /word-split--finished/,
           /page-transition--home/,
-          /^header/
+          /^header/,
+          /inline-block/,
+          /overflow-y-clip/,
+          /info-open/
+          /data-roll/
         ]
       }
     });
