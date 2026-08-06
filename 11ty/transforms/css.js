@@ -44,7 +44,7 @@ export default async function (content) {
           /^header/,
           /inline-block/,
           /overflow-y-clip/,
-          /info-open/
+          /info-open/,
           /data-roll/
         ]
       }
