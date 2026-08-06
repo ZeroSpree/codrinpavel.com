@@ -1,0 +1,44 @@
+.awards {
+  width: 100%;
+  border-collapse: collapse;
+
+  td {
+    width: 50%;
+    vertical-align: top;
+    padding-block: var(--size-5xl);
+
+    &:first-child {
+      text-transform: uppercase;
+    }
+  }
+
+  tr:first-child td {
+    padding-top: 0;
+  }
+
+  tr:last-child td {
+    padding-bottom: 0;
+  }
+
+  tr:not(:first-child) {
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: currentColor;
+      transform: scaleX(0);
+      transform-origin: top left;
+      transition: transform 1s;
+      transition-delay: var(--transition-delay, 25ms);
+    }
+
+    &.is-inview::after {
+      transform: scaleX(100%);
+    }
+  }
+}

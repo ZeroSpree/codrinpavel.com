@@ -1,0 +1,18 @@
+<section class="pt-11xl pb-11xl" data-header-theme="midnight">
+  <div class="wrapper">
+    <div class="columns justify-end">
+      <div class="md:columns-8">
+        <p class="word-split type-large" data-title="About" data-reveal-batch>I started my career building government software, so <span class="color-text-highlight">accessibility</span>, <span class="color-text-highlight">performance</span>, and <span class="color-text-highlight">attention to detail</span> have been a fundamental part of my work from day one. {#My work combines creative exploration with a genuine passion for turning designs into interfaces that work for everyone.#} I've called it my <span class="color-text-highlight">professional hobby</span> for nearly two decades.</p>
+
+        <div class="mt-6xl" data-reveal-batch>
+          <h2 class="type-eyebrow" data-reveal>Capabilities</h2>
+          <ul>
+            {% for item in capabilities %}
+              <li data-reveal>{{item | safe}}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

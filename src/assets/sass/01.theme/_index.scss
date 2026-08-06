@@ -2,32 +2,28 @@
 @use "../mixins" as *;
 @use "../tokens" as *;
 
-@layer base, components, utilities, app;
+@layer base, utilities, components, app;
 
 :root {
   --grid-margin: 12px;
   --grid-screenwidth: 1940px;
   --column-gap: var(--grid-margin);
   --row-gap: var(--grid-margin);
-  --header-height: 40px;
+  --header-height: 56px;
   --footer-height: 40px;
   --header-spacing: 40px;
   --footer-spacing: 40px;
 
   @include mq(md) {
-  --grid-margin: 8px;
-  --header-height: 30px;
-  --footer-height: 30px;
-  --header-spacing: 70px;
-  --footer-spacing: 70px;
+    --grid-margin: 32px;
+    --header-height: 80px;
+    --footer-height: 30px;
+    --header-spacing: 70px;
+    --footer-spacing: 70px;
   }
 
   @each $key, $val in tokens("size") {
     --size-#{$key}: #{$val};
-  }
-
-  @each $key, $val in tokens("ratio") {
-    //--ratio-#{$key}: #{$val};
   }
 
   @each $key, $val in tokens("font-weight") {
@@ -42,19 +38,50 @@
     --font-size-#{$key}: #{$val};
   }
 
+  @each $key, $val in tokens("ratio") {
+    //--ratio-#{$key}: #{$val};
+  }
+
   @each $key, $val in tokens("blur") {
     //--blur-#{$key}: #{$val};
   }
 
   @each $key, $val in tokens("radius") {
-    //--radius-#{$key}: #{$val};
+    --radius-#{$key}: #{$val};
   }
 
   @each $key, $val in tokens("shadow") {
     //--shadow-#{$key}: #{$val};
   }
+}
 
+:root {
   @each $key, $val in tokens("colors", "default") {
     --color-#{$key}: #{$val};
+  }
+
+  &[data-theme="dark"] {
+    color-scheme: dark;
+
+    --color-site-bg: var(--color-midnight);
+    --color-site-text: var(--color-sage);
+
+    --color-surface-light: var(--color-heavymetal);
+    --color-surface-dark: var(--color-heavymetal);
+
+    --color-text-light: var(--color-sage);
+    --color-text-dark: var(--color-sage);
+    --color-text-highlight: var(--color-white);
+
+    .image,
+    video {
+      filter: brightness(0.85);
+    }
+
+    ::selection {
+      background: var(--color-sage);
+      color: var(--color-heavymetal);
+      text-shadow: none;
+    }
   }
 }

@@ -1,13 +1,10 @@
-.site-footer {
-  position: sticky;
-  bottom: 0;
-  z-index: 9999;
+.footer--light {
+  background-color: var(--color-surface-light);
+  color: var(--color-text-dark);
+}
 
-  background-color: var(--color-white);
-  height: var(--footer-height);
-  padding: 0 var(--grid-margin);
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+:root[data-theme=dark] {
+  .footer--light {
+    background-color: var(--color-midnight);
+  }
 }

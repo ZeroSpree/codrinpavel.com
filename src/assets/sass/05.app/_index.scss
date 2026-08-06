@@ -7,13 +7,10 @@
   @include meta.load-css('header');
   @include meta.load-css('menu');
   @include meta.load-css('footer');
-  @include meta.load-css('pagination');
 
   // pages
-  @include meta.load-css('home');
-  @include meta.load-css('awards');
-  @include meta.load-css('lab');
-
-  // animations
-  @include meta.load-css('reveal');
+  @include meta.load-css('info');
+  @include meta.load-css('case-studies');
+  @include meta.load-css('case-study');
+  @include meta.load-css('archive');
 }

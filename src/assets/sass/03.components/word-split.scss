@@ -1,0 +1,37 @@
+@use "../02.base/typography" as *;
+
+.word-split {
+  position: relative;
+  opacity: 0;
+
+  &.word-split--finished {
+    opacity: 1;
+  }
+
+  .whitespace-nowrap > :first-child {
+    white-space: normal;
+  }
+
+  a {
+    transition: color 300ms;
+    color: var(--color-text-highlight);
+
+    &:hover {
+      color: var(--color-site-text);
+    }
+
+    .punctuation {
+      color: var(--color-site-text);
+    }
+  }
+
+  &[data-title]::before {
+    @extend .type-anchor;
+    content: "("attr(data-title)")";
+    margin-bottom: 0;
+    margin-right: var(--size-8xl);
+    line-height: calc(var(--font-size-3xl) * 1.15);
+    line-height: 1;
+    color: var(--color-text-highlight);
+  }
+}

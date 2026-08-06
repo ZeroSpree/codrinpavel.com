@@ -1,128 +1,113 @@
 @use "../mixins" as *;
 
-@include mq(md, max) {
-  .menu-button {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+main,
+footer {
+  transition: filter 500ms, transform 1000ms;
+}
 
-    span {
-      height: 1.1em;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-    }
-
-    b {
-      transition: transform 600ms;
-    }
-
-    &[aria-expanded="true"] {
-      b {
-        transform: translateY(-100%);
-      }
-    }
+body[class*="open"] {
+  main,
+  footer {
+    filter: blur(2px) brightness(0.1);
+    transform: scaleX(1.01);
   }
 
+  .header {
+    color: var(--color-white);
+  }
+}
+
+
+.underscore {
+  text-decoration: underline;
+}
+
+@include mq(md, max) {
   .menu {
     position: fixed;
-    inset: var(--header-height) 0 0 0;
+    inset: 0 0 0 0;
     z-index: 1;
 
-    font-size: var(--font-size-5xl);
-
-    padding: var(--size-4xl) var(--grid-margin);
-    background-color: var(--color-white);
+    padding: calc(var(--header-height) + var(--size-9xl)) var(--grid-margin) calc(var(--size-9xl) + env(safe-area-inset-bottom));
+    background-color: light-dark(var(--color-heavymetal), var(--color-midnight));
+    color: var(--color-sage);
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
-    li {
-      list-style: none;
-    }
-
-    &__contact {
-      padding-block: var(--size-2xl);
-      border-top: 1px solid var(--color-black);
-    }
-  }
-
-  .header__nav,
-  .site-footer::before {
-    background-image: linear-gradient(currentColor, currentColor);
-    background-repeat: no-repeat;
-    background-position: 100% 100%;
-    background-size: 0 1px;
-    transition: background-size 600ms;
-  }
-
-  .site-footer::before {
-    content: "";
-    position: absolute;
-    inset: auto 0 100% 0;
-    height: 1px;
-    background-position: 0 0;
-  }
-
-  main {
-    opacity: 1;
-    filter: blur(0px);
-    transform: scale(1);
-    transition: all 600ms;
-  }
-
-  /*animations*/
-
-  .menu {
     clip-path: inset(0 0 100%);
     transition: clip-path 600ms;
     will-change: clip-path;
 
-    li {
-      overflow: hidden;
-    }
-
-    a {
-      display: block;
-      opacity: 0;
-      transform: translateY(-110%);
-      transition-property: opacity, transform;
-      transition-duration: 200ms, 400ms;
-      transition-delay: calc((6 - var(--index)) * 60ms);
-    }
-
-    &-open {
-      .menu {
-        clip-path: inset(0 0 0 0);
-      }
-
-      .header__nav {
-        background-position: 0 100%;
-        background-size: 100% 1px;
-      }
-
-      .site-footer::before {
-        background-position: 100% 0;
-        background-size: 100% 1px;
-      }
-
-      main {
-        opacity: .1;
-        filter: blur(2px);
-        transform: scale(0.995);
+    &__nav {
+      li {
+        overflow: hidden;
+        font-size: 13vw;
       }
 
       a {
-        transition-delay: calc(100ms + 80ms * var(--index));
-        transition-duration: 800ms, 300ms;
-        transform: translateY(0%);
-        opacity: 1;
+        display: block;
+        transform: translateY(-150%);
+        transform-origin: center left;
+        transition-property: transform;
+        transition-duration: 0ms;
+        transition-delay: 350ms;
+
+        sup {
+          font-size: 0.4em;
+          top: -1.2em;
+        }
       }
+    }
+
+    &__footer {
+      display: flex;
+      align-items: center;
+      gap: var(--size-ml);
+      justify-content: space-between;
+
+      margin-top: var(--size-10xl);
+
+      color: var(--color-white);
+
+      opacity: 0;
+      transform: translateY(2em);
+      transition-property: transform, opacity;
+      transition-duration: 0ms;
+      transition-delay: 350ms;
+    }
+
+    .theme-toggle {
+      &::before,
+      &::after {
+        width: 44px;
+      }
+
+      &::before {
+        margin-right: -7px;
+      }
+    }
+  }
+
+  /*animations*/
+  .menu-open .menu {
+    clip-path: inset(0 0 0 0);
+    transition: clip-path 800ms;
+
+    &__nav {
+      a {
+        transform: translateY(0%);
+        transition-delay: calc(300ms + 200ms * var(--index));
+        transition-duration: 1000ms;
+      }
+    }
+
+    &__footer {
+      opacity: 1;
+      transform: translateY(0%);
+      transition-delay: 500ms;
+      transition-duration: 1200ms;
     }
   }
 }

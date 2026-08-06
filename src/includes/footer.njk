@@ -1,12 +1,25 @@
-<footer class="site-footer">
-  <div class="wrapper">
-    <div class="columns">
-      <div class="columns-6 md:columns-7 flex justify-end items-center color-faint">Inquire</div>
+{% set footer_headertheme = "light" %}
 
-      <div class="columns-6 md:columns-5 flex justify-between items-center">
-        <a href="mailto:hello@codrin.eu" class="link" target="_blank" rel="noopener noreferrer">hello@codrin.eu</a>
-        <a href="https://www.linkedin.com/in/codrin-pavel/" class="link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+{% if footertheme == "light" %}
+  {% set footer_headertheme = "dark" %}
+{% endif %}
+
+<footer class="hero footer footer--{{footertheme}} bg-surface-dark color-text-light" data-header-theme="{{footer_headertheme}}">
+  <div class="wrapper min-h-100lvh flex flex-col justify-end">
+    <div class="columns md:columns-5 items-end pt-10xl pb-2xl">
+      <div>
+        {% svg "bb.svg" %}
+      </div>
+
+      <div class="md:ml-1 order-first md:order-last mb-10xl md:mb-zero">
+        <a href="mailto:hello@codrinpavel.com" class="link type-medium color-white" data-reveal target="_blank" rel="noopener noreferrer">hello@codrinpavel.com</a>
+        <h1 class="word-split type-large mt-4xl " data-reveal-batch>Let's team up and<br> build something better.</h1>
       </div>
     </div>
   </div>
 </footer>
+
+<div class="cursor" aria-hidden="true">
+  <div class="cursor__title"></div>
+  <div class="cursor__images"></div>
+</div>

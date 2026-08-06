@@ -1,0 +1,24 @@
+@use "../mixins" as *;
+
+.hero {
+  h1 {
+    max-width: 26em;
+  }
+
+  @include mq(md, max) {
+    svg {
+      max-height: 40svh;
+      width: auto;
+      max-width: 100%;
+    }
+
+    .type-medium {
+      // type-large
+      font-size: var(--font-size-3xl);
+      font-variation-settings: var(--font-weight-normal);
+      line-height: 1.15;
+      letter-spacing: -.02em;
+      margin-right: var(--size-xl);
+    }
+  }
+}

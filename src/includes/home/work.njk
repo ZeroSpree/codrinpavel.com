@@ -1,0 +1,58 @@
+<section class="pt-11xl pb-11xl" data-header-theme="midnight">
+  <div class="wrapper">
+    <div class="columns items-start">
+      <div class="hidden md:block md:columns-3 border-t-1 pt-4xl mt-xl sticky top-10xl">
+        <div class="squish">
+          <span class="block type-huge">85+</span>
+          <strong class="block type-medium">Projects</strong>
+          <p class="mt-sm color-text-highlight">across corporate communications,<br>media platforms, and enterprise websites.</p>
+        </div>
+      </div>
+
+      <div class="md:columns-8 ml-auto">
+        <p class="word-split type-large" data-reveal-batch data-title="Awards & Recognition">Technical quality and accessibility have always been at the core of my work. While I don't chase awards, it's rewarding to see it recognized by industry award programs.</p>
+
+        <table class="awards mt-10xl">
+          <tbody>
+            {% for award in awards %}
+              <tr data-reveal>
+                <td data-reveal>
+                  <strong>{{ award.organization -}}<sup>({{ award.count }})</sup></strong>
+                </td>
+                <td>
+                  <ul>
+                    {% for detail in award.details %}
+                      <li data-reveal>{{ detail.count }}&times; {{ detail.title }}</li>
+                    {% endfor %}
+                  </ul>
+                </td>
+              </tr>
+            {% endfor %}
+
+            <tr data-reveal>
+              <td data-reveal>
+                <strong>CSS Winner<sup>(1)</sup></strong>
+              </td>
+              <td>
+                <ul>
+                  <li data-reveal>1&times; Star of the Day</li>
+                </ul>
+              </td>
+            </tr>
+
+            <tr data-reveal>
+              <td data-reveal>
+                <strong>BestCSS<sup>(1)</sup></strong>
+              </td>
+              <td>
+                <ul>
+                  <li data-reveal>1&times; Site of The Day</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

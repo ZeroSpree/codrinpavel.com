@@ -1,0 +1,107 @@
+<section class="columns">
+  <div class="columns-3 md:columns-4 lg:columns-2 lg:ml-4">
+    <h2 class="type-regular">Info</h2>
+  </div>
+
+  <div class="columns-8 md:columns-6 lg:columns-4">
+    <p>Independent frontend developer living in ☀️ Las Palmas de Gran Canaria and working worldwide.</p>
+    <p class="mt-xl">I partner with agencies and creative-led teams, building websites, corporate reports, and media platforms from concept to launch.</p>
+    <p class="mt-xl">My development practice is grounded in accessibility, performance, and a deep respect for the creative process. I approach every project by understanding the intent behind the work, refining the implementation until it faithfully reflects the original vision.</p>
+  </div>
+</section>
+
+<section class="columns pt-8xl">
+  <div class="columns-3 md:columns-4 lg:columns-2 lg:ml-4">
+    <h2 class="type-regular">Years</h2>
+  </div>
+
+  <div class="columns-8 md:columns-6">
+    <ul>
+      <li class="md:flex gap-md pb-sm md:pb-zero">
+        <p>Ideas On Purpose</p>
+        <p class="color-text-light">Development Partner · Contract · 8 years</p>
+      </li>
+      <li class="md:flex gap-md pb-sm md:pb-zero">
+        <p>Rebelmouse</p>
+        <p class="color-text-light">Frontend Lead · Enterprise Team · 3 years</p>
+      </li>
+      <li class="md:flex gap-md pb-sm md:pb-zero">
+        <p>MyGov.us</p>
+        <p class="color-text-light">Frontend Developer · 3 years</p>
+      </li>
+      <li class="md:flex gap-md pb-sm md:pb-zero">
+        <p>Self Employed</p>
+        <p class="color-text-light">Creative Developer · since 2009</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="columns pt-8xl">
+  <div class="columns-3 md:columns-4 lg:columns-2 lg:ml-4">
+    <h2 class="type-regular">Capabilities</h2>
+  </div>
+
+  <div class="columns-8 md:columns-6">
+    <ul>
+      {% for item in capabilities %}
+        <li>{{item | safe}}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="columns pt-8xl">
+  <div class="columns-3 md:columns-4 lg:columns-2 lg:ml-4">
+    <h2 class="type-regular">Work</h2>
+  </div>
+
+  <div class="columns-8 md:columns-6">
+    <ul>
+      {% for page in collections.work | order %}
+        <li>
+          <a data-roll href="{{ page.url | url }}" data-cursor-image="{{page.data.title | slugify}}">
+            <span>{{page.data.long or page.data.title}}</span>
+            <span class="color-text-light">Read Case Study →</span>
+          </a>
+          <figure id="{{page.data.title | slugify}}" class="hidden" aria-hidden="true">
+            {% img "thumbs/case-studies/"~ page.data.title | slugify ~".jpg", "", "", "eager" %}
+          </figure>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="columns pt-8xl">
+  <div class="columns-3 md:columns-4 lg:columns-2 lg:ml-4">
+    <h2 class="type-regular">Awards</h2>
+  </div>
+
+  <div class="columns-8 md:columns-6">
+    <ul>
+      {% for award in awards %}
+        <li>{{ award.count }}&times; {{ award.organization }}</li>
+      {% endfor %}
+      <li>1&times; CSS Winner</li>
+      <li>1&times; BestCSS</li>
+    </ul>
+  </div>
+</section>
+
+<section class="columns pt-8xl">
+  <div class="columns-3 md:columns-4 lg:columns-2 lg:ml-4">
+    <h2 class="type-regular">Contact</h2>
+  </div>
+
+  <div class="columns-8 md:columns-6">
+    <ul>
+      <li class="">
+        <a href="https://www.linkedin.com/in/codrin-pavel/" class="link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </li>
+      <li class="">
+        <a href="mailto:hello@codrinpavel.com" class="ml-auto link" target="_blank" rel="noopener noreferrer">hello@codrinpavel.com</a>
+      </li>
+    </ul>
+  </div>
+</section>

@@ -4,10 +4,25 @@
   @include meta.load-css("wrapper");
   @include meta.load-css("site-logo");
   @include meta.load-css("link");
-  @include meta.load-css("card");
-  @include meta.load-css("scroller");
-  @include meta.load-css("stat");
+  @include meta.load-css("rollover");
+  @include meta.load-css("button");
+  @include meta.load-css("theme-toggle");
+  @include meta.load-css("tag");
+
+  @include meta.load-css("hero");
+  @include meta.load-css("splash");
+  @include meta.load-css("awards");
+  @include meta.load-css("profilecard");
   @include meta.load-css("quote");
-  @include meta.load-css("cover");
-  @include meta.load-css("archive");
+  @include meta.load-css("brands");
+  @include meta.load-css("words");
+
+  // animations
+  @include meta.load-css('preloader');
+  @include meta.load-css("parallax");
+  @include meta.load-css('reveal');
+  @include meta.load-css("scroll-reveal");
+  @include meta.load-css("word-split");
+  @include meta.load-css("words-carousel");
+  @include meta.load-css("cursor");
 }

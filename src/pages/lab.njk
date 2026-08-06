@@ -3,26 +3,29 @@ layout: base.njk
 title: "Lab"
 order: 5
 meta_description: "Explore creative frontend experiments, open source projects, CSS art, design systems, and browser-based tools built to push the limits of modern web development."
----
+eleventyExcludeFromCollections: true
 
+pageclasses: "page-interior"
+---
+{#
 <section class="lab">
   {% for item in lab %}
     <article class="wrapper">
       <div class="columns lg:columns-2 --row-gap-sm mb-8xl whitespace-nowrap font-bold">
         <div class="flex items-center justify-between gap-md md:justify-start" data-reveal>
-          <h2 class="mb-zero color-faint">Project</h2>
+          <h2 class="type-eyebrow mb-zero color-theme">Project</h2>
           {{item.title}}
         </div>
 
         <div class="flex items-center justify-between gap-md md:justify-start" data-reveal>
-          <h2 class="mb-zero color-faint">Period</h2>
+          <h2 class="type-eyebrow mb-zero color-theme">Period</h2>
           {{item.period | safe}}
         </div>
 
         {% if item.extra %}
           {% for key, value in item.extra %}
             <div class="flex items-center justify-between gap-md md:justify-start" data-reveal>
-              <h2 class="mb-zero color-faint">{{ key }}</h2>
+              <h2 class="type-eyebrow mb-zero color-theme">{{ key }}</h2>
               {{ value }}
             </div>
           {% endfor %}
@@ -31,7 +34,7 @@ meta_description: "Explore creative frontend experiments, open source projects, 
 
       <div class="columns --row-gap-8xl">
         <div class="md:columns-10 lg:columns-5">
-          <h2 class="color-faint" data-reveal>Overview</h2>
+          <h2 class="type-eyebrow color-theme" data-reveal>Overview</h2>
 
           <h1 class="type-medium flex flex-wrap" data-reveal-batch>
             {%- for char in item.overview.split(' ') -%}
@@ -67,7 +70,7 @@ meta_description: "Explore creative frontend experiments, open source projects, 
             {% if item.meta %}
               {% for key, value in item.meta %}
                 <div>
-                  <h2 class="color-faint" data-reveal>{{ key }}</h2>
+                  <h2 class="type-eyebrow color-theme" data-reveal>{{ key }}</h2>
 
                   <ul>
                     {% for thing in value %}
@@ -82,7 +85,7 @@ meta_description: "Explore creative frontend experiments, open source projects, 
 
         {% if item.features %}
           <div class="md:columns-5 lg:columns-3">
-            <h2 class="color-faint" data-reveal>Features</h2>
+            <h2 class="type-eyebrow color-theme" data-reveal>Features</h2>
             <ul>
               {% for feature in item.features %}
                 <li data-reveal>{{feature}}</li>
@@ -95,13 +98,13 @@ meta_description: "Explore creative frontend experiments, open source projects, 
   {% endfor %}
 </section>
 
-{#
+
 
 <h2>WIP Agency-oriented white label website audits</h2>
 <h2>PixelArt generator</h2>
 <h2>CodePen experiments</h2>
 
-<h2 class="color-faint">About</h2>
+<h2 class="color-theme">About</h2>
 <p class="mb-ml">We used tables back in high school. Then came floats. Flexbox before it worked properly &mdash; and flex after it finally did. Then grid. Fireworks became Photoshop, .psd became .sketch, which then became .fig.</p>
 <p class="mb-ml">Flash faded. jQuery took over. Frameworks came and went. Browsers eventually grew Web Components, and the internet survived the cookie notice war.</p>
 <p class="mb-ml">At some point, the goal stopped being keeping up and started being building things that last. My focus shifted toward semantic, accessible, performant websites designed to age slowly.</p>

@@ -1,0 +1,26 @@
+[data-roll] {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: clip;
+
+  span {
+    transition: transform;
+    transition-duration: 500ms;
+    transition-timing-function: cubic-bezier(.04,.69,.31,.98); // ease-snappy
+
+    &:last-child {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+    }
+  }
+
+  &:is(:focus-visible),
+  &:is(:hover) {
+    span {
+      transform: translateY(-100%);
+    }
+  }
+}

@@ -1,0 +1,201 @@
+---
+layout: base.njk
+headertheme: "header--white"
+
+pageclasses: "page-interior"
+
+eleventyComputed:
+  preload: "case-studies/{{title|slugify}}/cover.jpg"
+---
+
+{% set previousPost = collections.work | order | getPreviousCollectionItem %}
+{% set nextPost = collections.work | order | getNextCollectionItem %}
+
+{% set position %}{% if heroposition %}object-{{heroposition}}{%endif%}{%endset%}
+{% set video_url = "/assets/video/case-studies/"~title|slugify~"/" %}
+{% set image_url = "case-studies/"~title|slugify~"/" %}
+{% set hasAwards = false %}
+
+{% for item in archive %}
+  {% if (item.client == title or item.long == title) %}
+    {% for project in item.projects %}
+      {% if project.awards %}
+        {% set hasAwards = true %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
+<article class="case-study">
+  <header>
+    <div class="parallax pb-2xl" data-header-theme="white">
+      {% img "case-studies/"~title|slugify~"/cover.jpg", "", position, "eager" %}
+
+      <div class="wrapper">
+        <p class="tag" data-reveal>
+          {{period | safe}}
+          {{type | safe}}
+        </p>
+      </div>
+    </div>
+
+    <div class="wrapper pt-6xl pb-10xl" data-header-theme="midnight">
+      <div class="columns">
+        <div class="md:columns-5">
+          <h1 class="word-split type-xlarge mb-xl" data-reveal-batch>{{long or title | safe}}</h1>
+        </div>
+
+        <div class="md:columns-6 md:ml-1 lg:columns-5">
+          {% if role %}
+          <h2 class="type-eyebrow mt-ml" data-reveal>Role</h2>
+          <p class="type-medium" data-reveal>{{role}}</p>
+          {% endif %}
+
+          <div class="columns justify-between mt-6xl --row-gap-6xl">
+            <div class="columns-5 md:columns-12 lg:columns-5">
+              <h2 class="type-eyebrow" data-reveal>Deliverables</h2>
+              <ul class="type-small" data-reveal-batch>
+                {% for item in archive %}
+                  {% if item.client == title or item.long == title %}
+                    {% for project in item.projects %}
+                      {% if not project.wayback %}
+                        <li data-reveal>
+                          <a href="{{ project.url }}" target="_blank" rel="noopener noreferrer" data-roll>
+                            <span class="color-text-highlight">{{- project.project -}}</span>
+                            <span>View Live Site →</span>
+                          </a>
+                        </li>
+                      {% else %}
+                        <li data-reveal>{{- project.project -}}</li>
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+
+            <div class="columns-6 md:columns-12 lg:columns-6">
+              <h2 class="type-eyebrow" data-reveal>Capabilities</h2>
+              <ul class="type-small" data-reveal-batch>
+                {% for item in focus %}
+                  <li data-reveal>{{item | safe}}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <div class="wrapper" data-header-theme="dark">
+    <figure class="scroll-reveal">
+      {% if hero_video %}
+        <video width="1440" height="900" data-src="{{ video_url ~ hero_video | url }}" muted playsinline loop></video>
+      {% endif %}
+      {% if hero_image %}
+        {% img image_url ~ hero_image %}
+      {% endif %}
+    </figure>
+
+    <section class="columns justify-end py-10xl md:py-11xl">
+      <div class="md:columns-8">
+        <h2 class="word-split type-large" data-title="Overview" data-reveal-batch>{{intro|safe}}</h2>
+
+        <div class="columns columns-6 mt-8xl">
+          {% if hasAwards %}
+            <div>
+              <h2 class="type-eyebrow" data-reveal>Recognition</h2>
+              <ul class="type-small" data-reveal-batch>
+                {% for item in archive %}
+                  {% if item.client == title or item.long == title %}
+                    {% for project in item.projects %}
+                      {% for award in project.awards %}
+                        <li data-reveal>
+                          <a href="{{ award.url }}" target="_blank" rel="noopener noreferrer" data-roll>
+                            <span class="color-text-highlight">{{ award.organization }} {{ award.year }}</span>
+                            <span>{{ award.title }} →</span>
+                          </a>
+                        </li>
+                      {% endfor %}
+                    {% endfor %}
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+
+          {% if credits %}
+            <div>
+              <h2 class="type-eyebrow" data-reveal>Design</h2>
+              <p class="type-small" data-reveal>{{credits}}</p>
+            </div>
+          {% endif %}
+
+          {% if platform %}
+            <div>
+              <h2 class="type-eyebrow" data-reveal>Platform</h2>
+              <ul class="type-small" data-reveal-batch>
+                {% for item in platform %}
+                  <li data-reveal>{{item}}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </section>
+
+    {% for block in body %}
+      {% if block.type === "text" %}
+        <section class="columns mb-10xl md:py-10xl">
+          <div class="md:columns-8">
+            <h2 class="word-split type-large" data-reveal-batch>{{ block.text | safe}}</h2>
+          </div>
+        </section>
+
+      {% elseif block.columns %}
+        {% set columnWidth = 12 / block.columns.length %}
+
+        <div class="columns md:columns-{{ columnWidth }} mb-10xl --row-gap-10xl">
+          {% for item in block.columns %}
+            <figure data-reveal="image" data-stagger="250" class="{{ block.classes }}">
+              {% if item.type === "image" %}
+                {% img image_url ~ item.src %}
+              {% elseif item.type === "video" %}
+                <video src="{{ video_url ~ item.src | url }}" muted loop playsinline></video>
+              {% endif %}
+            </figure>
+          {% endfor %}
+        </div>
+
+      {% elseif block.type === "quote" %}
+        {% for quote in words %}
+          {% if quote.project == long or quote.project == title %}
+            <figure class="quote scroll-reveal mb-10xl">
+              <blockquote class="type-large" data-reveal-batch>
+                <p class="word-split">{{quote.content | safe}}</p>
+              </blockquote>
+
+              <figcaption class="type-medium">
+                <cite data-reveal>{{quote.name}}</cite>
+                <span data-reveal>{{quote.title}}, {{quote.company}}</span>
+              </figcaption>
+            </figure>
+          {% endif %}
+        {% endfor %}
+
+      {% else %}
+        <figure class="scroll-reveal mb-10xl">
+          {% if block.type === "image" %}
+            {% img image_url ~ block.src %}
+          {% elseif block.type === "video" %}
+            <video src="{{ video_url ~ block.src | url }}" muted loop playsinline></video>
+          {% endif %}
+        </figure>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <footer class="pagination"></footer>
+</article>

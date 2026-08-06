@@ -1,0 +1,48 @@
+.case-study {
+  figure,
+  video,
+  img {
+    border-radius: var(--radius-ml);
+  }
+
+  header {
+    .parallax {
+      --move-y: 30%;
+
+      position: relative;
+      z-index: 1;
+
+      height: 70svh;
+
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-color: var(--color-midnight);
+        opacity: .4;
+      }
+
+      .wrapper {
+        position: sticky;
+        top: calc(100% + 50px);
+        z-index: 1;
+      }
+    }
+  }
+
+  .columns {
+    video,
+    .image {
+      object-fit: cover;
+      min-height: 100%;
+    }
+
+    .object-contain {
+      video,
+      .image {
+        object-fit: contain;
+        object-position: top center;
+      }
+    }
+  }
+}

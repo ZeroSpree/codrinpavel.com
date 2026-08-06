@@ -1,0 +1,29 @@
+@use "../mixins" as *;
+
+.archive {
+  padding-top: var(--header-height);
+  padding-bottom: var(--size-6xl);
+
+  li {
+    padding-block: var(--size-md);
+    transition: color 300ms;
+
+    &:hover {
+      color: var(--color-white);
+
+      [data-roll] span {
+        transform: translateY(-100%);
+      }
+    }
+  }
+
+  @include mq(md) {
+    padding-top: 40svh;
+  }
+
+  @media (hover: none) {
+    a {
+      color: var(--color-white);
+    }
+  }
+}

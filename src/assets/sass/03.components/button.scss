@@ -1,0 +1,27 @@
+.button {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  transition: color 300ms;
+
+  &[aria-expanded="true"] {
+    [data-roll] span {
+      transform: translateY(-100%);
+    }
+  }
+
+  &:is(:focus-visible),
+  &:is(:hover) {
+    [data-roll="hover"] span {
+      transform: translateY(-100%);
+    }
+  }
+
+  &.button--tall {
+    height: var(--header-height);
+  }
+
+  [data-roll] {
+    pointer-events: none;
+  }
+}

@@ -1,26 +1,47 @@
 ---
 layout: base.njk
-title: "Work"
 order: 1
+
+title: "Work"
 meta_description: "Explore frontend development projects spanning ESG reports, corporate websites, nonprofit platforms, investor relations, and media sites for Fortune 500 companies and global organizations."
+
+headertheme: "header--light"
+footertheme: "light"
+
+pageclasses: "page-interior"
+
+eleventyComputed:
+  count: "{{collections.work.length}}"
 ---
 
-<section class="work">
+<section class="case-studies bg-surface-dark color-text-light" data-header-theme="light">
   <div class="wrapper">
-    <div class="columns md:columns-6 lg:columns-4">
+    <h1 class="type-xlarge mt-10xl mb-8xl md:hidden">Case Studies</h1>
 
-      {% for page in collections.work | order %}
-        <a href="{{ page.url | url }}" class="card" data-reveal data-stagger="250">
-          {%- set image_url = "case-studies/" ~ page.data.title | slugify ~ "/cover.png" -%}
+    <div class="columns items-end justify-between">
+      <div class="hidden md:block md:columns-6 lg:columns-7 case-studies__clients type-large" data-reveal-batch>
+        {% for page in collections.work | order %}
+          <a data-reveal="fade-in" data-stagger="160" data-scroll-to="{{page.data.title}}" data-text="{{page.data.title}}" href="{{ page.url | url }}">{{page.data.title}}</a>
+        {% endfor %}
+      </div>
 
-          <div class="card__index">{{ loop.index < 10 and '0' + loop.index or loop.index }}.</div>
-          <h2>{{page.data.long or page.data.title}}</h2>
+      <div class="md:columns-6 lg:columns-4" data-reveal>
+        {% for page in collections.work | order %}
+          {% set position %}{% if page.data.heroposition %}object-{{page.data.heroposition}}{%endif%}{%endset%}
+          <a style="--i:{{loop.index}}" class="parallax squish {{position}}" id="{{page.data.title}}" href="{{ page.url | url }}">
+            <figure>
+              {% img "case-studies/" ~ page.data.title | slugify ~ "/cover-tall.jpg", "", position %}
+              <figcaption>
+                <h2 class="type-medium normal-case">
+                  <strong>{{page.data.long or page.data.title}}</strong>
+                </h2>
 
-          <figure>
-            {% img image_url, "" %}
-          </figure>
-        </a>
-    {% endfor %}
-
+                <span class="tag">{{page.data.type}}</span>
+              </figcaption>
+            </figure>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
   </div>
 </section>

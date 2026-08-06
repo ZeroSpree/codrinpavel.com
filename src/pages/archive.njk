@@ -1,0 +1,69 @@
+---
+layout: base.njk
+order: 2
+
+title: "Archive"
+meta_description: "17 years, 85+ projects, 20+ Fortune 500 engagements, 25+ industry awards, and websites serving more than 1 billion readers worldwide."
+
+headertheme: "header--light"
+footertheme: "light"
+
+pageclasses: "page-interior"
+
+eleventyComputed:
+  count: 87
+---
+
+<section class="archive bg-surface-dark color-text-light" data-header-theme="light">
+  <div class="wrapper">
+    <h1 class="type-xlarge mt-10xl mb-8xl md:hidden">Client Archive</h1>
+
+    <ul>
+      {%- for client in archive -%}
+        {% set isCaseStudy = collections.work | hasCaseStudy(client.client) %}
+        {% set url = "/work/"~client.client|slugify~"/" %}
+
+        {%- set count = client.projects.length -%}
+        {% set sup = ("<sup>(" ~ count ~ ")</sup>" if count > 1 else "") | safe %}
+
+        {% set yearsFrom = client.projects[client.projects.length-1].year %}
+        {% set yearsTo = client.projects[0].year %}
+
+        {% if yearsFrom != yearsTo %}
+          {% set to = "&mdash;"~yearsTo %}
+        {% else %}
+          {% set to = "" %}
+        {% endif %}
+
+        {%- set projectType = client.projects[0].project -%}
+        {% if client.projects.length > 1 %}
+          {%- set projectType = client.type -%}
+        {% endif %}
+
+        <li class="columns justify-between items-center --row-gap-xs mb-2xl md:mb-zero" data-cursor-image="archive-{{client.client | slugify}}">
+          <span class="columns-12 md:columns-2 ml-auto">{{yearsFrom}}{{to|safe}}</span>
+
+          <div class="columns-12 md:columns-6 type-large">
+            {%- if isCaseStudy -%}
+              <a data-roll href="{{url|url}}">
+                <span>{{client.client}}{{sup|safe}}</span>
+                <span class="color-white">{{projectType}}</span>
+              </a>
+            {% else %}
+              <div data-roll>
+                <span>{{client.client}}{{sup|safe}}</span>
+                <span>{{projectType}}</span>
+              </div>
+            {% endif %}
+          </div>
+
+          {% if not client.projects[0].nothumb == true %}
+            <figure id="archive-{{client.client | slugify}}" class="hidden" aria-hidden="true">
+              {% img "thumbs/archive/"~ client.client|slugify ~"-"~client.projects[0].project|slugify~"-"~client.projects[0].year~".jpg", "", "", "eager" %}
+            </figure>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>

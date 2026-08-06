@@ -6,9 +6,9 @@ export default function () {
 
     // Site data
     year: new Date().getFullYear(),
-    site_name: 'Codrin Pavel — Independent Frontend Partner',
-    meta_title: 'Codrin Pavel — Independent Frontend Partner',
-    meta_description: "Independent frontend developer with 17 years building award-winning websites, ESG reports, media platforms, and enterprise experiences for agencies, nonprofits, and Fortune 500 companies.",
+    site_name: 'Codrin Pavel — Build Better',
+    meta_title: 'Codrin Pavel — Build Better',
+    meta_description: "Development partner to agencies for over 17 years, building award-winning, accessible websites, corporate reports, and media platforms.",
     meta_image: '/assets/img/social_image.png',  // place in src/assets/favicon
   }
 };

@@ -1,18 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" {%if pageclasses%}class="{{pageclasses}}"{%endif%}>
   <head>
     {% include "_meta.njk" %}
     {% include "_favicon.njk" %}
     {% include "_preloads.njk" %}
+    {% include "_darkmode.njk" %}
     {% include "_styles.njk" %}
   </head>
 
   <body>
+    <div class="page-transition" aria-hidden="true"></div>
+    <div class="preloader" aria-hidden="true">
+      <div class="wrapper">
+        <div class="columns md:columns-5 items-end">
+          <div>
+            {% svg "bb.svg" %}
+          </div>
+        </div>
+      </div>
+    </div>
+
     {% include "header.njk" %}
 
     <main>
       {{ content | safe }}
     </main>
+
+    <article class="info drawer type-small" id="info">
+      {% include "info.njk" %}
+    </article>
 
     {% include "footer.njk" %}
     {% include "_scripts.njk" %}

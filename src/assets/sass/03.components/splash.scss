@@ -1,0 +1,55 @@
+.splash {
+  display: block;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  clip-path: inset(0);
+  overflow: clip;
+  cursor: pointer;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--color-midnight);
+
+    animation: splash-darken linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+
+  figure, figcaption {
+    height: 100%;
+  }
+
+  .image {
+    filter: brightness(0.75);
+  }
+
+  .wrapper {
+    height: 200%;
+  }
+
+  h2 {
+    position: sticky;
+    z-index: 1;
+    top: 50svh;
+    transform: translateY(-100%);
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: var(--size-xl);
+  }
+
+  .tag {
+    position: fixed;
+    bottom: var(--size-2xl);
+  }
+}
+
+
+@keyframes splash-darken {
+  0% {opacity: 0}
+  66% {opacity: 0}
+  100% {opacity: .9}
+}

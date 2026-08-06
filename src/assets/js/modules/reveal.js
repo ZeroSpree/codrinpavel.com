@@ -14,7 +14,7 @@ const BATCH_SELECTOR = "[data-reveal-batch]";
 const START_DELAY_MS = 1;
 const INVIEW_CLASS = "is-inview";
 
-const DEFAULT_STAGGER_MS = 25;
+const DEFAULT_STAGGER_MS = 125;
 const DEFAULT_BATCH_MAX_WAIT_MS = 1000;
 
 let observer;
@@ -35,11 +35,6 @@ function initReveals() {
 
   queued.clear();
   revealFrame = 0;
-
-  for (const el of elements) {
-    el.classList.remove(INVIEW_CLASS);
-    el.style.removeProperty("--transition-delay");
-  }
 
   if (!("IntersectionObserver" in window)) {
     reveal(elements);
@@ -183,13 +178,9 @@ function revealOne(el, delay) {
   );
 
   el.classList.add(INVIEW_CLASS);
-
   delay += stagger;
 
-  if (observer) {
-    observer.unobserve(el);
-  }
-
+  if (observer) observer.unobserve(el);
   return delay;
 }
 

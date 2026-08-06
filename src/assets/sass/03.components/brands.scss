@@ -1,0 +1,114 @@
+@use "../mixins" as *;
+
+.brands {
+  position: relative;
+  padding-block: var(--size-11xl);
+
+  background-color: var(--color-surface-light);
+  color: light-dark(var(--color-white), var(--color-sage));
+
+  ul {
+    margin-top: -80lvh;
+    padding-block: calc(calc(100lvh - var(--header-height) - var(--size-2xl) * 2) / 2);
+  }
+
+  li {
+    pointer-events: none;
+    position: relative;
+    font-size: fluid(60px, 124px);
+    line-height: 1.2;
+    font-variation-settings: var(--font-weight-semibold);
+
+    animation: fade-through-viewport linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+
+    text-align: center;
+
+    @include mq(md) {
+      transform-origin: left;
+      text-align: left;
+    }
+
+    &::before {
+      content: '';
+      width: 28px;
+      aspect-ratio: 1;
+      background-color: currentColor;
+      border-radius: 50%;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      translate: -250% -50%;
+      scale: .6;
+      opacity: 0;
+      transition: scale 1.5s, opacity 1.5s;
+    }
+
+    &.is-active {
+      &::before {
+        scale: 1;
+        opacity: .8;
+        transition: scale 800ms, opacity 800ms;
+      }
+    }
+  }
+
+  &__media {
+    position: sticky;
+    top: calc(var(--header-height) + var(--size-2xl));
+
+    height: calc(100lvh - var(--header-height)*2 - var(--size-2xl) * 2);
+    background-color: black;
+
+    figure {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 800ms ease;
+      filter: brightness(0.6);
+
+      &.is-active {
+        opacity: 1;
+        z-index: 1;
+      }
+
+      .image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+
+  @include mq(md, max) {
+    padding-block: var(--size-zero);
+
+    .wrapper {
+      padding: 0;
+    }
+
+    &__media.squish {
+      top: 0;
+      height: 100lvh;
+      scale: none !important;
+    }
+  }
+}
+
+
+@keyframes fade-through-viewport {
+  0%,
+  100% {
+    opacity: 0;
+    scale: 0.85;
+  }
+
+  45%,
+  55% {
+    opacity: 1;
+    scale: 1;
+  }
+}

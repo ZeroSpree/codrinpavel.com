@@ -1,0 +1,40 @@
+@use "../mixins" as *;
+
+.profilecard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--size-6xl);
+
+  background-color: var(--color-surface-light);
+  color: var(--color-text-dark);
+
+  padding: var(--size-6xl) var(--size-2xl);
+  border-radius: var(--radius-ml);
+
+  > div {
+    flex-grow: 1;
+    width: 100%;
+  }
+
+  p {
+    font-size: var(--font-size-5xl);
+    font-variation-settings: var(--font-weight-medium);
+    width: 100%;
+  }
+
+  img {
+    border-radius: calc(var(--radius-ml) / 1.5);
+  }
+
+  @include mq(md) {
+    flex-direction: row;
+    padding: 3% 6% 3% 12%;
+    gap: 10%;
+
+    img {
+      max-width: 25%;
+    }
+  }
+}

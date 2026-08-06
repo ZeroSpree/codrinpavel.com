@@ -5,28 +5,3 @@
 {% if preload -%}
   {%- img preload, "", "", "eager", "preload" -%}
 {%- endif -%}
-
-{# Prefetch Entire Menu except current page #}
-{%- for item in collections.nav | order %}
-  {%- if page.url != item.url %}
-    <link rel="prefetch" href="{{ item.url | url }}">
-  {%- endif %}
-{%- endfor %}
-
-{# Prefetch Previous and Next Project pages + preload their hero images
-{%- set prevProject = pagination.page.previous or pagination.page.last -%}
-{%- set nextProject = pagination.page.next or pagination.page.first -%}
-
-{%- set prevHref = pagination.href.previous or pagination.href.last -%}
-{%- set nextHref = pagination.href.next or pagination.href.first -%}
-
-{%- if prevHref and prevProject %}
-  <link rel="prefetch" href="{{ prevHref | url }}">
-  {% img "work/" + (prevProject.client | slugify) + "-" + (prevProject.project | slugify) + "-" + prevProject.year + ".png", "", "", "lazy", "prefetch" -%}
-{%- endif %}
-
-{%- if nextHref and nextProject %}
-  <link rel="prefetch" href="{{ nextHref | url }}">
-  {% img "work/" + (nextProject.client | slugify) + "-" + (nextProject.project | slugify) + "-" + nextProject.year + ".png", "", "", "lazy", "prefetch" -%}
-{%- endif %}
-#}

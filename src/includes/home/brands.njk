@@ -1,0 +1,29 @@
+{% set excluded = ["Ideas On Purpose", "Brilliant Earth", "NRMP", "AXIOS Media"] %}
+
+<section class="brands" data-header-theme="dark">
+  <div class="wrapper">
+    <div class="brands__media scroll-reveal squish">
+      {% for page in collections.work | order %}
+        {% if page.data.title not in excluded %}
+          <figure data-brand-id="{{page.data.title | slugify}}" data-cursor="Explore the {{page.data.title}} Case Study" data-cursor-color="white">
+            <a href="{{ page.url | url }}">
+              {% img "case-studies/"~ page.data.title | slugify ~"/cover.jpg", "", "object-"~page.data.heroposition %}
+            </a>
+          </figure>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="columns justify-end">
+      <div class="md:columns-8">
+        <ul>
+          {% for page in collections.work | order %}
+            {% if page.data.title not in excluded %}
+              <li data-brand-id="{{page.data.title | slugify}}">{{page.data.title | safe}}</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

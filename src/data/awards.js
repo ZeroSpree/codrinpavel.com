@@ -1,43 +1,40 @@
-import work from "./work.js";
+import getWork from "./archive.js";
 
-/**
-  {
-    GDUSA: [
-      {
-        organization: "GDUSA",
-        title: "Digital Design Awards",
-        year: 2024,
-        client: "Brilliant Earth",
-        project: "2024 Mission Report"
-      },
-    ],
-  }
-*/
 export default function () {
-  const grouped = work()
-    .filter((item) => item.awards)
-    .flatMap((item) =>
-      item.awards.map((award) => ({
-        ...award,
-        client: item.client,
-        project: item.project,
-        projectUrl: item.url,
-      }))
-    )
-    .sort((a, b) => b.year - a.year)
-    .reduce((groups, award) => {
-      const org = award.organization;
+  const organizations = new Map();
 
-      groups[org] ??= [];
-      groups[org].push(award);
+  getWork().forEach(client => {
+    client.projects?.forEach(project => {
+      project.awards?.forEach(award => {
+        if (!organizations.has(award.organization)) {
+          organizations.set(award.organization, {
+            organization: award.organization,
+            count: 0,
+            details: new Map(),
+          });
+        }
 
-      return groups;
-    }, {});
+        const organization = organizations.get(award.organization);
+        organization.count++;
 
-  return Object.entries(grouped)
-    .sort(([, aAwards], [, bAwards]) => bAwards.length - aAwards.length)
-    .map(([organization, awards]) => ({
-      organization,
-      awards,
-    }));
+        organization.details.set(
+          award.title,
+          (organization.details.get(award.title) ?? 0) + 1
+        );
+      });
+    });
+  });
+
+  return [...organizations.values()]
+    .map(organization => ({
+      organization: organization.organization,
+      count: organization.count,
+      details: [...organization.details.entries()]
+        .map(([title, count]) => ({
+          title,
+          count,
+        }))
+        .sort((a, b) => b.count - a.count || a.title.localeCompare(b.title)),
+    }))
+    .sort((a, b) => a.organization.localeCompare(b.organization));
 }

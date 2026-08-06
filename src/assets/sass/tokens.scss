@@ -16,15 +16,27 @@ $tokens: (
     ),
 
     default: (
-      "white": hsl(0, 0%, 100%),
-      "black":  hsl(0, 0%, 0%),
-      "balance-text": hsl(140, 6%, 21%),
-      "faint": hsl(0, 0%, 46%),// hsl(0deg 0% 65%),
-      "gray": hsl(0, 0%, 93%),
+      "silk": #f6f2ef,
+      "midnight": #171717,
+      "sage": #a6a999,
+      "heavymetal": #2d312a,
+
+      "site-bg": var(--color-silk),
+      "site-text": var(--color-midnight),
+
+      "surface-light": var(--color-sage),
+      "surface-dark": var(--color-heavymetal),
+
+      "text-light": var(--color-sage),
+      "text-dark": var(--color-heavymetal),
+      "text-highlight": var(--color-sage),
+
+      "white": var(--color-silk),
+      "true-black": "#000",
     ),
 
     theme: (
-      none: (),
+      dark: (),
     )
   ),
 
@@ -33,42 +45,42 @@ $tokens: (
   ),
 
   font-size: (
-    xs: fluid(10px, 12px),
-    sm: fluid(10px, 12px),
+    xs: fluid(11px, 14px),
+    sm: fluid(14px, 16px),
     md: fluid(12px, 16px),
     ml: fluid(16px, 18px),
-    lg: fluid(18px, 24px),
+    lg: fluid(16px, 24px),
     xl: fluid(22px, 28px),
     2xl: fluid(22px, 32px),
-    3xl: fluid(24px, 42px),
+    3xl: fluid(24px, 44px),
     4xl: fluid(32px, 52px),
-    5xl: fluid(44px, 64px),
-    6xl: fluid(64px, 80px),
-    7xl: fluid(100px, 200px),
+    5xl: fluid(24px, 64px),
+    6xl: fluid(36px, 80px),
+    7xl: fluid(100px, 160px),
   ),
 
   font-weight: (
-    //thin: "'wght' 100",
-    //extralight: "'wght' 200",
-    //light: "'wght' 300",
-    //normal: "'wght' 400",
+    thin: "'wght' 100",
+    extralight: "'wght' 200",
+    light: "'wght' 300",
+    normal: "'wght' 400",
     medium: "'wght' 500",
-    //semibold: "'wght' 550",
-    bold: "'wght' 750",
-    //extrabold: "'wght' 800",
-    //black: "'wght' 900",
-    //extrablack: "'wght' 950",
+    semibold: "'wght' 550",
+    bold: "'wght' 600",
+    extrabold: "'wght' 800",
+    black: "'wght' 900",
+    extrablack: "'wght' 950",
   ),
 
   radius: (
-    zero: 0,
-    xs: fluid(2px, 4px),
-    sm: fluid(4px, 8px),
-    md: fluid(8px, 12px),
-    ml: fluid(10px, 16px),
-    lg: fluid(16px, 24px),
-    xl: fluid(20px, 32px),
-    max: 1e5px,
+    //zero: 0,
+    //xs: fluid(2px, 4px),
+    //sm: fluid(4px, 8px),
+    //md: fluid(8px, 12px),
+    ml: fluid(12px, 16px),
+    //lg: fluid(16px, 24px),
+    //xl: fluid(20px, 32px),
+    //max: 1e5px,
   ),
 
   blur: (
@@ -127,6 +139,7 @@ $tokens: (
     8xl: fluid(56px, 80px),
     9xl: fluid(64px, 96px),
     10xl: fluid(80px, 120px),
+    11xl: fluid(160px, 240px),
     header-offset: calc(var(--header-height) + var(--header-spacing)),
     footer-offset: var(--grid-margin),
     max: 1e5px,

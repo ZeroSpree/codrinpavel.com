@@ -2,17 +2,42 @@
   display: none !important;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
+html,
+body,
+.lenis {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: none;
+}
+
+html::selection {
+  background: var(--color-heavymetal);
+  color: var(--color-sage);
+  text-shadow: none;
+}
+
+.bg-surface-dark::selection {
+  background: var(--color-sage);
+  color: var(--color-heavymetal);
+}
+
+html {
+  color: var(--color-site-text);
+  background: var(--color-site-bg);
+  cursor: default;
+  overflow-x: clip;
+}
+
 :where(a, button) {
   color: inherit;
   text-decoration: none;
   outline: 0;
   -webkit-tap-highlight-color: transparent;
-}
-
-html::selection {
-  background: var(--color-black);
-  color: var(--color-faint);
-  text-shadow: none;
 }
 
 button {

@@ -1,55 +1,42 @@
 import lenis from "./lenis";
 
-const menuButton = document.querySelector(".menu-button");
-const menu = document.querySelector(".menu");
+const buttons = document.querySelectorAll(".header [aria-controls]");
 
-const BODY_CLASS = "menu-open";
-const MENU_CLASS = "is-open";
+function toggleMenu(button, isOpen) {
+  const targetId = button.getAttribute("aria-controls");
+  const menu = document.getElementById(targetId);
 
-export function openMenu() {
-  if (!menuButton || !menu) return;
-
-  menu.classList.add(MENU_CLASS);
-  menu.inert = false;
-
-  menuButton.setAttribute("aria-expanded", "true");
-  document.body.classList.add(BODY_CLASS);
-
-  lenis.stop();
-
-  const firstFocusable = menu.querySelector("a");
-  firstFocusable?.focus();
-}
-
-export function closeMenu({ restoreFocus = true } = {}) {
-  if (!menuButton || !menu) return;
-  if (!menu.classList.contains(MENU_CLASS)) return;
-
-  menu.classList.remove(MENU_CLASS);
-  menu.inert = true;
-
-  menuButton.setAttribute("aria-expanded", "false");
-  document.body.classList.remove(BODY_CLASS);
-
-  lenis.start();
-
-  if (restoreFocus) {
-    menuButton.focus();
-  }
-}
-
-function toggleMenu() {
   if (!menu) return;
 
-  menu.classList.contains(MENU_CLASS)
-    ? closeMenu()
-    : openMenu();
+  const openClass = `${targetId}-open`;
+  const currentlyOpen = button.getAttribute("aria-expanded") === "true";
+
+  isOpen ??= !currentlyOpen;
+
+  document.body.classList.toggle(openClass, isOpen);
+
+  menu.inert = !isOpen;
+  button.setAttribute("aria-expanded", isOpen);
+
+  const hasOpenMenu = [...buttons].some(
+    button => button.getAttribute("aria-expanded") === "true"
+  );
+
+  hasOpenMenu ? lenis.stop() : lenis.start();
+  // todo should probably focus a sr-only headline
+  //isOpen ? menu.querySelector("a, button")?.focus() : button.focus();
 }
 
-menuButton?.addEventListener("click", toggleMenu);
+buttons.forEach(button => {
+  button.addEventListener("click", () => toggleMenu(button));
+});
 
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && menu?.classList.contains(MENU_CLASS)) {
-    closeMenu();
-  }
+document.addEventListener("keydown", event => {
+  if (event.key !== "Escape") return;
+
+  buttons.forEach(button => {
+    if (button.getAttribute("aria-expanded") === "true") {
+      toggleMenu(button, false);
+    }
+  });
 });

@@ -6,17 +6,22 @@
   z-index: 100;
 
   height: var(--header-height);
-  padding: 0 var(--grid-margin);
+  color: var(--color-text-dark);
 
-  background-color: var(--color-white);
+  a {
+    transition: color 300ms, opacity 400ms, background-size 0.3s;
+  }
 
   .header__nav {
     display: flex;
     flex-direction: column;
     justify-content: center;
+
     position: relative;
     z-index: 10;
     height: 100%;
+
+    font-variation-settings: 'wght' 500;
 
     @include mq(md) {
       li:last-child {
@@ -26,10 +31,38 @@
       }
     }
   }
+}
 
-  @include mq(lg) {
-    background-color: transparent;
-    filter: invert(100%);
-    mix-blend-mode: exclusion;
+.header {
+  &--white {
+    color: var(--color-white);
+
+    [aria-current="page"] {
+      color: var(--color-site-text);
+    }
+  }
+
+  &--midnight {
+    color: var(--color-site-text);
+
+    [aria-current="page"] {
+      color: var(--color-white);
+    }
+  }
+
+  &--light {
+    color: var(--color-text-light);
+
+    [aria-current="page"] {
+      color: var(--color-white);
+    }
+  }
+
+  &--dark {
+    color: var(--color-text-dark);
+
+    [aria-current="page"] {
+      color: var(--color-white);
+    }
   }
 }

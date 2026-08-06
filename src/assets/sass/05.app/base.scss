@@ -1,74 +1,37 @@
 @use "../mixins" as *;
 
-::-webkit-scrollbar {
-  display: none;
-}
-
-html,
-body {
-  cursor: default;
-  background: var(--color-white);
-  overflow-x: clip;
-}
-
-main {
-  opacity: 1;
-  transition: opacity 250ms ease;
-}
-
-html.is-leaving main {
-  opacity: 0;
-}
-
-html,
-body,
-section,
-main,
-.lenis {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: none;
+[id] {
+  scroll-margin-top: var(--header-height);
 }
 
 [target="_blank"] {
   cursor: alias;
 }
 
-[aria-current="page"] {
-  color: var(--color-faint);
-}
-
-section {
-  padding: var(--size-header-offset) var(--grid-margin) var(--footer-spacing);
-
-  &.fullscreen {
-    padding: var(--size-header-offset) var(--grid-margin) 0;
-    height: calc(100svh - var(--footer-height));
-  }
-}
-
-.screen {
-  min-height: calc(100svh - var(--size-header-offset) - var(--footer-height));
-  display: flex;
-  flex-direction: column;
-  margin-bottom: var(--size-10xl);
-
-  &--reveal {
-    min-height: calc(100svh - var(--size-header-offset) - var(--footer-height) - var(--size-10xl) - 10vh);
-    margin-bottom: var(--size-10xl);
-  }
-}
-
-img,
-video {
-  max-height: calc(100svh - var(--header-height) - var(--footer-height));
-  width: auto;
-  margin-inline: auto;
-}
-
 iframe {
   width: 100%;
   height: auto;
   aspect-ratio: 16 / 9;
+}
+
+.section {
+  padding-block: var(--size-10xl);
+}
+
+main {
+  .squish,
+  .case-study figure {
+    scale: var(--scroll-scale, 1);
+    transform-origin: center;
+    will-change: scale, transform, clip-path, filter;
+  }
+}
+
+.image {
+  opacity: 0;
+  transition: opacity 600ms;
+
+  &.is-loaded {
+    opacity: 1;
+  }
 }

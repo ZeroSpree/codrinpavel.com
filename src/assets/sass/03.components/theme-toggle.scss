@@ -1,0 +1,31 @@
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  transition: opacity 400ms;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    width: 15px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    transition: transform .4s;
+  }
+
+  &::before {
+    background: var(--color-white);
+    box-shadow: 0 0 0 1px var(--color-midnight);
+    margin-right: -2px;
+  }
+
+  &::after {
+    background: var(--color-midnight);
+    box-shadow: 0 0 0 1px var(--color-sage);
+  }
+
+  &[aria-pressed="false"]::after,
+  &[aria-pressed="true"]::before {
+    transform: scale(.65);
+  }
+}

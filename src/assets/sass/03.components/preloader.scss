@@ -1,0 +1,74 @@
+.preloader {
+  --speed: 1.1s;
+  --delay: 2.7s;
+  --speed: 0s;
+  --delay: 0s;
+
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+
+  color: light-dark(var(--color-sage), var(--color-heavymetal));
+  background-color: light-dark(var(--color-heavymetal), var(--color-sage));
+
+  animation: var(--speed) preloader cubic-bezier(0.76, 0, 0.24, 1) var(--delay) both;
+
+  .page-interior & {
+    --delay: 0ms;
+    --speed: .6s;
+    background-color: var(--color-sage);
+
+    svg {
+      display: none;
+    }
+  }
+
+  svg path {
+    animation: 800ms preloader-text ease calc(300ms + 100ms * var(--i)) both;
+  }
+
+  .columns {
+    min-height: 100svh;
+    padding-bottom: var(--size-2xl);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    --speed: 0s;
+    --delay: 0s;
+    display: none;
+  }
+}
+
+@keyframes preloader {
+  0% {clip-path: inset(0)}
+  100% {clip-path: inset(0 0 100%)}
+}
+
+@keyframes preloader-text {
+  from {clip-path: inset(0 0 100%);transform:translateY(-5%)}
+  to {clip-path: inset(0);transform:translateY(0%)}
+}
+
+
+.page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--color-sage);
+  translate: 0 100%;
+  transition: translate 1.1s cubic-bezier(0.76, 0, 0.24, 1);
+  pointer-events: none;
+
+  &--home {
+    background-color: light-dark(var(--color-heavymetal), var(--color-sage));
+  }
+
+  &.is-active {
+    translate: 0 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    display: none;
+    transition-duration: 0.01ms;
+  }
+}

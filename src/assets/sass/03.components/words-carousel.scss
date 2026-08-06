@@ -1,0 +1,18 @@
+.words-carousel {
+  height: 3em;
+  position: relative;
+
+  --delay: 3s;
+  --count: 7;
+  --total: var(--delay) * var(--count) * 1s;
+
+  p {
+    position: absolute;
+  }
+
+  [data-reveal] {
+    animation: none;
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}

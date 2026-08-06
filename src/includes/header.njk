@@ -1,44 +1,75 @@
 {% set nav = ["About", "Stats", "Words", "Awards", "Lab"] %}
 
 {% set logo %}
-<a href="/" class="site-logo" data-inview>
-  <div class="flex overflow-hidden">
-    <span data-rickroll="Codrin"><b>Codrin</b></span>
-    <span>/</span>
-    <span data-rickroll="Pavel"><b>Pavel</b></span>
-  </div>
-</a>
+<a href="/" class="flex items-center">Codrin Pavel</a>
 {% endset %}
 
-<header class="header">
+<header class="header {% if headertheme %}{{headertheme}}{% endif %}">
   <nav class="wrapper header__nav">
-    <ul class="columns md:hidden">
+    <ul class="columns items-center md:hidden">
       <li class="columns-6">{{logo|safe}}</li>
       <li class="columns-6 flex items-center justify-end">
-        <button class="menu-button type-regular" aria-controls="menu" aria-expanded="false">
-          <span><b>Menu</b><b>Close</b></span>
+        <button class="button" aria-controls="menu" aria-expanded="false">
+          <span data-roll>
+            <span class="button__text">Menu</span>
+            <span class="button__text color-white">Close</span>
+          </span>
         </button>
       </li>
     </ul>
 
-    <ul class="columns md:columns-1 items-center hidden md:flex">
-      <li>{{logo|safe}}</li>
+    <div class="columns items-center hidden md:flex">
+      <div class="md:columns-4">
+        {{logo|safe}}
+      </div>
 
+      <div class="md:columns-2 flex gap-2xl">
+        <button class="button" aria-controls="info" aria-expanded="false">
+          <span data-roll="hover">
+            <span>At A Glance +</span>
+            <span>At A Glance -</span>
+          </span>
+        </button>
+      </div>
+
+      <div class="md:columns-6 flex gap-xl">
+        {% for item in collections.nav | order %}
+          {% if item.data.excludeFromDesktopMenu %}
+            {% set mobileOnly = "md:hidden" %}
+          {% endif %}
+
+          <a class="link {{mobileOnly}}" href="{{item.url | url}}" {% if page.url == item.url %}aria-current="page"{% endif %}>{{item.data.title}}</a>
+        {% endfor %}
+        <a href="mailto:hello@codrinpavel.com" class="ml-auto link" target="_blank" rel="noopener noreferrer">Email</a>
+        <a href="https://www.linkedin.com/in/codrin-pavel/" class="link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+
+        <button type="button" class="theme-toggle"></button>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="menu" id="menu">
+    <ul class="menu__nav">
       {% for item in collections.nav | order %}
-        <li {% if loop.first %}class="md:ml-1 md:mr-auto"{%endif%}>
-          <a class="link {% if page.url.indexOf(item.url) == 0 %}color-faint{% endif %}" {% if page.url == item.url %} aria-current="page"{% endif %} href="{{item.url | url}}">{{item.data.title}}</a>
+        {% set counter = "" %}
+        {% if item.data.count %}
+          {% set counter %}<sup>({{item.data.count}})</sup>{% endset %}
+        {% endif %}
+        <li style="--index:{{loop.index0}}">
+          <a href="{{item.url | url}}" {% if page.url == item.url %} aria-current="page"{% endif %}>{{item.data.title}}{{counter|safe}}</a>
         </li>
       {% endfor %}
     </ul>
-  </nav>
 
-  <nav class="menu">
-    <ul>
-    {% for item in collections.nav | order %}
-      <li style="--index:{{loop.index}}">
-        <a {% if page.url.indexOf(item.url) == 0 %}class="color-faint"{% endif %} {% if page.url == item.url %} aria-current="page"{% endif %} href="{{item.url | url}}">{{item.data.title}}</a>
-      </li>
-    {% endfor %}
-    </ul>
+    <div class="menu__footer">
+      <div class="flex flex-col gap-sm type-medium">
+        <a href="https://www.linkedin.com/in/codrin-pavel/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="mailto:hello@codrinpavel.com" class="underscore" target="_blank" rel="noopener noreferrer">hello@codrinpavel.com</a>
+      </div>
+
+      <div>
+        <button type="button" class="theme-toggle"></button>
+      </div>
+    </div>
   </nav>
 </header>

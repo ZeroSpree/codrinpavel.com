@@ -1,67 +1,69 @@
-body, 
+body,
 .type-regular {
   font-family: var(--font-family-sans);
   font-size: var(--font-size-sm);
-  font-variation-settings: var(--font-weight-bold);
-  line-height: 1.2;
+  font-variation-settings: var(--font-weight-normal);
+  line-height: 1.4;
   font-style: normal;
   letter-spacing: -.02em;
 
   font-variant-numeric: tabular-nums;
   text-wrap: pretty;
 
-  color: var(--color-black);
+  color: inherit;
+}
+
+.type-eyebrow,
+.type-anchor {
+  font-size: var(--font-size-xs);
+  line-height: 1.2;
+  font-variation-settings: var(--font-weight-bold);
+  letter-spacing: 0.02em;
+  font-style: normal;
+  text-transform: uppercase;
+  margin-bottom: var(--size-ml);
+}
+
+.type-small {
+  font-size: var(--font-size-xs);
+  font-variation-settings: var(--font-weight-semibold);
+  line-height: 1.4;
 }
 
 .type-medium {
   font-size: var(--font-size-lg);
-  line-height: 1.15;
-  color: var(--color-black);
-  letter-spacing: -.03em;
-}
-
-h2, h3,
-.type-eyebrow {
-  font-size: var(--font-size-sm);
+  font-variation-settings: var(--font-weight-normal);
   line-height: 1.2;
-  font-style: normal;
-}
+  letter-spacing: -.02em;
 
-h1,
-.type-large {
-  font-size: var(--font-size-3xl);
-  line-height: 1.15;
-  letter-spacing: -.03em;
-  color: var(--color-black);
-}
-
-.type-xlarge {
-  font-size: var(--font-size-5xl);
-  line-height: 1.1em;
-  letter-spacing: -.04em;
-  color: var(--color-black);
-}
-
-.type-huge {
-  font-size: max(var(--font-size-7xl), 18vh);
-  font-style: normal;
-  line-height: .8;
-  color: var(--color-balance-text);
-  font-variation-settings: var(--font-weight-medium);
-}
-
-:where(p) {
-  margin: 0;
-
-  + p {
-    //margin-top: var(--size-2xl);
+  sup {
+    font-size: 66%;
   }
 }
 
-h2, h3 {
-  margin-bottom: var(--size-ml);
+.type-large {
+  font-size: var(--font-size-3xl);
+  font-variation-settings: var(--font-weight-normal);
+  line-height: 1.15;
+  letter-spacing: -.02em;
+
+  sup {
+    font-size: 40%;
+    top: -1.2em;
+    font-variation-settings: var(--font-weight-semibold);
+  }
 }
 
-i, em {
+.type-xlarge {
+  font-size: var(--font-size-6xl);
   font-style: normal;
+  line-height: 1.15;
+  font-variation-settings: var(--font-weight-bold);
+}
+
+.type-huge {
+  font-size: var(--font-size-7xl);
+  font-style: normal;
+  line-height: 1.15;
+  font-variation-settings: var(--font-weight-medium);
 }

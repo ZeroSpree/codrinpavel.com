@@ -1,0 +1,86 @@
+html:active .cursor__title::before {
+  scale: .6;
+}
+
+.cursor {
+  position: fixed;
+  inset: 0 auto auto 0;
+  z-index: 9999;
+  pointer-events: none;
+
+  &[data-mode="title"] .cursor__title {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.cursor__title {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+
+  font-size: 0.875rem;
+  font-variation-settings: var(--font-weight-bold);
+  line-height: 1;
+  white-space: nowrap;
+
+  opacity: 0;
+  scale: 0;
+  transition: opacity 600ms, scale 600ms;
+
+  &::before {
+    content: "";
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: currentColor;
+    transition: scale 200ms cubic-bezier(.34, 1.35, .64, 1);;
+  }
+}
+
+.cursor__images {
+  figure {
+    display: flex;
+    gap: 20px;
+
+    position: absolute;
+    top: 0;
+
+    width: 30vw;
+    max-width: 250px;
+
+    opacity: 0;
+    clip-path: inset(40% round 12px);
+    transform: scale(.9);
+    transition: opacity 400ms ease, clip-path 400ms ease, transform 400ms ease;
+
+    img {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    &[data-active] {
+      opacity: 1;
+      clip-path: inset(0 round 12px);
+      transform: scale(1);
+      transition-delay: 0ms, 0ms;
+      z-index: 1;
+    }
+  }
+}
+
+@keyframes blink {
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (pointer: coarse),
+(hover: none),
+(prefers-reduced-motion: reduce) {
+  .cursor {
+    display: none;
+  }
+}

@@ -1,0 +1,24 @@
+<section class="words pt-11xl pb-11xl" data-header-theme="midnight" data-cursor="Click to read more">
+  <div class="wrapper">
+    <div class="columns">
+      <div class="md:columns-8 md:ml-2">
+        <div class="words__quote">
+          {% for quote in words %}
+          <figure>
+            <figcaption class="type-eyebrow text-center md:text-right color-text-highlight">
+              <cite data-reveal>{{quote.name}},</cite>
+              <span data-reveal>{{quote.title}}</span>
+            </figcaption>
+
+            <blockquote class="type-large mt-8xl" data-reveal-batch>
+              <p class="word-split font-medium color-text-dark" data-title="For {{quote.project}}">{{quote.content | safe}}</p>
+            </blockquote>
+          </figure>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="sr-only words__next" type="button">Read more testimonials</button>
+</section>

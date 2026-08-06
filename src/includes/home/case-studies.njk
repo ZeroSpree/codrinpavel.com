@@ -1,0 +1,33 @@
+<section>
+  {% for page in collections.work | order %}
+    {% if page.data.featured %}
+      {% set position %}
+        {% if page.data.heroposition %}object-{{page.data.heroposition}}{%endif%}
+      {%endset%}
+
+      {% set color = page.data.theme and page.data.theme or 'white' %}
+
+      <a 
+        data-header-theme="{{color}}" 
+        href="{{ page.url | url}}" 
+        class="splash color-{{color}}" 
+        data-cursor="Explore the {{page.data.title}} Case Study" 
+        data-cursor-color="{{color}}">
+
+        <div class="wrapper">
+          <figure class="parallax">
+            {% img "case-studies/"~ page.data.title | slugify ~"/cover.jpg", "", position %}
+            <figcaption>
+              <h2 class="type-regular normal-case">
+                <strong>{{page.data.long or page.data.title}}</strong>
+                {{page.data.tagline}}
+              </h2>
+
+              <p class="tag">{{page.data.type}}</p>
+            </figcaption>
+          </figure>
+        </div>
+      </a>
+    {% endif %}
+  {% endfor %}
+</section>

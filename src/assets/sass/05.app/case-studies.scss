@@ -1,0 +1,91 @@
+@use "../mixins" as *;
+
+.case-studies {
+  --spacer: var(--size-2xl);
+
+  padding-top: var(--header-height);
+  padding-bottom: var(--spacer);
+
+  &__clients {
+    position: sticky;
+    bottom: var(--spacer);
+    color: var(--color-text-light);
+  }
+
+  a[data-text] {
+    position: relative;
+    display: inline-block;
+
+    &:not(:last-child)::after {
+      content: ',';
+    }
+
+    &::before {
+      content: attr(data-text);
+      position: absolute;
+      inset: 0;
+
+      color: var(--color-white);
+      white-space: nowrap;
+      pointer-events: none;
+
+      clip-path: inset(0 calc(100% - var(--progress, 0%)) 0 0);
+    }
+
+    &.is-past::before {
+      clip-path: inset(0 0 0 calc(100% - var(--progress, 0%)));
+    }
+  }
+
+  .parallax {
+    --move-y: 10vw;
+    --scale-to: 1;
+    --scale-from: 1.1;
+
+    position: relative;
+    z-index: 1;
+
+    height: calc(60lvh - var(--header-height) - var(--spacer));
+    border-radius: var(--radius-ml);
+
+    &:not(:last-child) {
+      margin-bottom: var(--spacer);
+    }
+
+    img {
+      border-radius: var(--radius-ml);
+
+      @include mq(md, max) {
+        filter: brightness(0.75);
+      }
+    }
+  }
+
+  figure,
+  figcaption {
+    height: 100%;
+  }
+
+  h2 {
+    position: relative;
+    top: 50%;
+    transform: translateY(-100%);
+    margin-left: var(--grid-margin);
+    color: var(--color-white);
+  }
+
+  .tag {
+    position: absolute;
+    inset: auto auto var(--grid-margin) var(--grid-margin);
+  }
+
+  @include mq(md) {
+    .parallax {
+      height: calc(100lvh - var(--header-height) - var(--spacer));
+    }
+
+    h2 {
+      display: none;
+    }
+  }
+}
