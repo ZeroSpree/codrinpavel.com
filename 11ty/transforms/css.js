@@ -44,8 +44,7 @@ export default async function (content) {
           /^header/,
           /inline-block/,
           /overflow-y-clip/,
-          /info-open/,
-          /data-roll/
+          /info-open/
         ]
       }
     });

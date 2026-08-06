@@ -10,8 +10,8 @@
     }
   }
 
-  &:is(:focus-visible),
-  &:is(:hover) {
+  &:focus-visible,
+  &:hover {
     [data-roll="hover"] span {
       transform: translateY(-100%);
     }

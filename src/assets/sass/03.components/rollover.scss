@@ -17,8 +17,8 @@
     }
   }
 
-  &:is(:focus-visible),
-  &:is(:hover) {
+  &:focus-visible,
+  &:hover {
     span {
       transform: translateY(-100%);
     }

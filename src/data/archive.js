@@ -67,7 +67,8 @@ export default function () {
       ]
     },
     {
-      client: "Dominion Energy",
+      client: "Dominion",
+      long: "Dominion Energy",
       type: "Suite of ESG, SCR & DEI Reports",
       projects: [
         {
@@ -448,7 +449,8 @@ export default function () {
       ]
     },
     {
-      client: "Stanley Black & Decker",
+      client: "Stanley",
+      long: "Stanley Black & Decker",
       projects: [
         {
           year: 2021,
@@ -712,7 +714,8 @@ export default function () {
       ]
     },
     {
-      client: "United Airlines",
+      client: "United",
+      long: "United Airlines",
       type: "Travel & Lifestyle Publication",
       projects: [
         {
@@ -732,7 +735,7 @@ export default function () {
       ]
     },
     {
-      client: "AXIOS Media",
+      client: "AXIOS",
       projects: [
         {
           year: 2017,
@@ -741,7 +744,8 @@ export default function () {
           tags: ["featured", "media"],
           //wayback: "20170202003159"
         }
-      ]
+      ],
+      long: "AXIOS Media"
     },
     {
       client: "GSK",
@@ -881,7 +885,8 @@ export default function () {
       ]
     },
     {
-      client: "PAPER Magazine",
+      client: "PAPER",
+      long: "PAPER Magazine",
       projects: [
         {
           year: 2016,
