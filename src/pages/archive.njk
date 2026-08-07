@@ -21,7 +21,7 @@ eleventyComputed:
     <ul>
       {%- for client in archive -%}
         {% set isCaseStudy = collections.work | hasCaseStudy(client.client) %}
-        {% set url = "/work/"~client.client|slugify~"/" %}
+        {% set url = "/work/"~isCaseStudy~"/" %}
 
         {%- set count = client.projects.length -%}
         {% set sup = ("<sup>(" ~ count ~ ")</sup>" if count > 1 else "") | safe %}
