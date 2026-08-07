@@ -45,7 +45,7 @@
   <div class="columns-8 md:columns-6">
     <ul>
       {% for item in capabilities %}
-        <li>{{item | safe}}</li>
+        <li>{{item.title | safe}}</li>
       {% endfor %}
     </ul>
   </div>

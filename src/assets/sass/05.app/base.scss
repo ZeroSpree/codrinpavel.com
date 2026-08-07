@@ -19,6 +19,10 @@ iframe {
 }
 
 main {
+  position: relative;
+  z-index: 1;
+  background: var(--color-site-bg);
+
   .squish,
   .case-study figure {
     scale: var(--scroll-scale, 1);
@@ -33,5 +37,26 @@ main {
 
   &.is-loaded {
     opacity: 1;
+  }
+}
+
+main,
+.footer__wrapper {
+  transition: filter 500ms, transform 1000ms;
+}
+
+body[class*="open"] {
+  main,
+  .footer__wrapper {
+    filter: blur(2px) brightness(0.1);
+    transform: scaleX(1.01);
+  }
+
+  .footer__wrapper {
+    transform: scale(1.01);
+  }
+
+  .header {
+    color: var(--color-white);
   }
 }

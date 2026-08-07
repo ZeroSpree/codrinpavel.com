@@ -19,3 +19,38 @@
     background-size: 100% 1px;
   }
 }
+
+.link--dot {
+  --dot-size: .7em;
+  position: relative;
+  margin-left: calc(var(--dot-size) * 2);
+
+  &::before {
+    content: '';
+    width: var(--dot-size);
+    height: var(--dot-size);
+
+    position: absolute;
+    top: 50%;
+    left: calc(var(--dot-size) * -2);
+    transform: translateY(-50%) scale(1);
+
+    border-radius: 50%;
+    background-color: currentColor;
+    transform-origin: center center;
+  }
+
+  &:hover,
+  &:focus-visible {
+    &::before {
+      animation: 1.4s blink ease-out infinite;
+    }
+  }
+}
+
+@keyframes blink {
+  45% {
+    opacity: .1;
+    transform: translateY(-50%) scale(.7);
+  }
+}

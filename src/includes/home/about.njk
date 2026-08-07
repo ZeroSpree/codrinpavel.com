@@ -2,15 +2,20 @@
   <div class="wrapper">
     <div class="columns justify-end">
       <div class="md:columns-8">
-        <p class="word-split type-large" data-title="About" data-reveal-batch>I started my career building government software, so <span class="color-text-highlight">accessibility</span>, <span class="color-text-highlight">performance</span>, and <span class="color-text-highlight">attention to detail</span> have been a fundamental part of my work from day one. {#My work combines creative exploration with a genuine passion for turning designs into interfaces that work for everyone.#} I've called it my <span class="color-text-highlight">professional hobby</span> for nearly two decades.</p>
+        <p class="word-split type-large" data-title="Capabilities" data-reveal-batch>I started my career building government software, so <span class="color-text-highlight">accessibility</span>, <span class="color-text-highlight">performance</span>, and <span class="color-text-highlight">attention to detail</span> have been a fundamental part of my work from day one. {#My work combines creative exploration with a genuine passion for turning designs into interfaces that work for everyone.#} I've called it my <span class="color-text-highlight">professional hobby</span> for nearly two decades.</p>
 
-        <div class="mt-6xl" data-reveal-batch>
-          <h2 class="type-eyebrow" data-reveal>Capabilities</h2>
-          <ul>
-            {% for item in capabilities %}
-              <li data-reveal>{{item | safe}}</li>
-            {% endfor %}
-          </ul>
+        <div class="mt-10xl">
+          {% for item in capabilities %}
+            <details name="capabilities" data-reveal>
+              <summary>{{item.title | safe}} <span class="icon"></span></summary>
+
+              <div class="accordion__content">
+                <div class="type-medium accordion__content-inner">
+                  <p>{{item.description | safe}}</p>
+                </div>
+              </div>
+            </details>
+          {% endfor %}
         </div>
       </div>
     </div>

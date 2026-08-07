@@ -71,12 +71,6 @@ html:active .cursor__title::before {
   }
 }
 
-@keyframes blink {
-  100% {
-    opacity: 0;
-  }
-}
-
 @media (pointer: coarse),
 (hover: none),
 (prefers-reduced-motion: reduce) {

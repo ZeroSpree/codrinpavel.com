@@ -1,5 +1,5 @@
-[hidden] {
-  display: none !important;
+:root {
+  interpolate-size: allow-keywords;
 }
 
 ::-webkit-scrollbar {
@@ -68,4 +68,12 @@ button {
   --scale-y: 1;
 
   transform: translate(var(--translate-x), var(--translate-y)) rotate(var(--rotate)) skewX(var(--skew-x)) skewY(var(--skew-y)) scaleX(var(--scale-x)) scaleY(var(--scale-y));
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.underscore {
+  text-decoration: underline;
 }

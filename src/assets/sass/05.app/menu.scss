@@ -1,27 +1,5 @@
 @use "../mixins" as *;
 
-main,
-footer {
-  transition: filter 500ms, transform 1000ms;
-}
-
-body[class*="open"] {
-  main,
-  footer {
-    filter: blur(2px) brightness(0.1);
-    transform: scaleX(1.01);
-  }
-
-  .header {
-    color: var(--color-white);
-  }
-}
-
-
-.underscore {
-  text-decoration: underline;
-}
-
 @include mq(md, max) {
   .menu {
     position: fixed;

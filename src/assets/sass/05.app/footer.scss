@@ -1,10 +1,40 @@
-.footer--light {
-  background-color: var(--color-surface-light);
+.footer {
+  position: relative;
+  min-height: 101lvh;
+  view-timeline-name: --footer;
+  view-timeline-axis: block;
+
+  &__wrapper {
+    position: fixed;
+    inset: 0;
+  }
+
+  .wrapper {
+    animation: footer-parallax linear both;
+    animation-timeline: --footer;
+    animation-range: entry 0% entry 50%;
+  }
+}
+
+.footer--light .footer__wrapper {
+  background-color: light-dark(var(--color-surface-light), var(--color-midnight));
   color: var(--color-text-dark);
 }
 
 :root[data-theme=dark] {
   .footer--light {
     background-color: var(--color-midnight);
+  }
+}
+
+@keyframes footer-parallax {
+  from {
+    filter: blur(1px) brightness(0.5);
+    transform: translateY(3lvh) scale(1.01);
+  }
+
+  to {
+    filter: blur(0px) brightness(1);
+    transform: translateY(0) scale(1);
   }
 }

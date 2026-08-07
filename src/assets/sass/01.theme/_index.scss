@@ -53,9 +53,7 @@
   @each $key, $val in tokens("shadow") {
     //--shadow-#{$key}: #{$val};
   }
-}
 
-:root {
   @each $key, $val in tokens("colors", "default") {
     --color-#{$key}: #{$val};
   }
