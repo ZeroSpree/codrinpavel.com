@@ -170,7 +170,12 @@ eleventyComputed:
               {% if item.type === "image" %}
                 {% img image_url ~ item.src %}
               {% elseif item.type === "video" %}
-                <video src="{{ video_url ~ item.src | url }}" muted loop playsinline></video>
+                <video 
+                  src="{{ video_url ~ item.src | url }}" 
+                  poster="{% img image_url ~ 'poster-' ~ item.src | replace('mp4', 'png'), '', '', 'lazy', 'url' %}"
+                  muted 
+                  loop 
+                  playsinline></video>
               {% endif %}
             </figure>
           {% endfor %}
@@ -197,7 +202,12 @@ eleventyComputed:
           {% if block.type === "image" %}
             {% img image_url ~ block.src %}
           {% elseif block.type === "video" %}
-            <video src="{{ video_url ~ block.src | url }}" muted loop playsinline></video>
+            <video 
+              src="{{ video_url ~ block.src | url }}" 
+              poster="{% img image_url ~ 'poster-' ~ block.src | replace('mp4', 'png'), '', '', 'lazy', 'url' %}"
+              muted 
+              loop 
+              playsinline></video>
           {% endif %}
         </figure>
       {% endif %}

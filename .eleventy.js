@@ -43,7 +43,6 @@ export default async function (eleventyConfig) {
    * 2) Copy all other static assets, except for favicons and processed files.
    */
 
-  eleventyConfig.addPassthroughCopy({".cache/img": "assets/img"});
   eleventyConfig.addPassthroughCopy({"./src/assets/favicon/": "./assets/img/" });
   eleventyConfig.addPassthroughCopy('./src/assets/', {
     filter: ['*/**', '!favicon/**', '!sass/**', '!js/**', '!img/**', '!svg/**']
@@ -126,6 +125,13 @@ export default async function (eleventyConfig) {
    * @link https://www.11ty.dev/docs/config/#configuration-options
    */
   eleventyConfig.setQuietMode(true);
+
+  eleventyConfig.on("eleventy.after", () => {
+    fs.cpSync(".cache/img", "dist/assets/img", {
+      recursive: true,
+      force: true,
+    });
+  });
 
   return {
     pathPrefix: Config.BASEPATH,
