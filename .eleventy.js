@@ -43,7 +43,8 @@ export default async function (eleventyConfig) {
    * 2) Copy all other static assets, except for favicons and processed files.
    */
 
-  eleventyConfig.addPassthroughCopy({ './src/assets/favicon/': './assets/img/' });
+  eleventyConfig.addPassthroughCopy({".cache/img": "assets/img"});
+  eleventyConfig.addPassthroughCopy({"./src/assets/favicon/": "./assets/img/" });
   eleventyConfig.addPassthroughCopy('./src/assets/', {
     filter: ['*/**', '!favicon/**', '!sass/**', '!js/**', '!img/**', '!svg/**']
   });

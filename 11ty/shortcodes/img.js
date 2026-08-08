@@ -2,28 +2,22 @@
  * Shortcode: {% img %}
  * @link https://www.11ty.dev/docs/plugins/image/
  *
- * @param {string} src                - Image path and filename, relative to ./src/assets/img/
- * @param {string} [alt=""]           - Alt text (ignored when preload=true)
- * @param {string} [css_classes=""]   - CSS classes applied to the image (ignored when preload=true)
- * @param {string} [loading="lazy"]   - Image loading strategy: "lazy" or "eager" (ignored when preload=true)
- * @param {boolean} [preload=false]   - Output a <link rel="preload"> tag instead of the image markup
+ * @param {string} src               - Image path and filename, relative to ./src/assets/img/
+ * @param {string} [alt=""]          - Alt text (ignored when preload=true)
+ * @param {string} [css_classes=""]  - CSS classes applied to the image (ignored when preload=true)
+ * @param {string} [loading="lazy"]  - Image loading strategy: "lazy" or "eager" (ignored when preload=true)
+ * @param {string|null} [strategy]   - "preload", "prefetch", or null
  *
  * Usage:
- *   {% img "folder/filename.jpg" %}
- *   {% img "folder/filename.jpg", "alt text", "css_classes", "eager" %}
- *   {% img "folder/filename.jpg", "", "", "lazy", true %}
- *
- * Examples:
- *   <!-- In <head> -->
- *   {% img "hero.jpg", "", "", "lazy", true %}
- *
- *   <!-- In <body> -->
- *   {% img "hero.jpg", "Hero image", "hero", "eager" %}
+ * {% img "folder/filename.jpg" %}
+ * {% img "folder/filename.jpg", "alt text", "css_classes", "eager" %}
+ * {% img "folder/filename.jpg", "", "", "lazy", "preload" %}
  *
  * Notes:
- *   - Generates responsive images using @11ty/eleventy-img.
- *   - Preloads use the generated WebP srcset via imagesrcset/imagesizes.
- *   - Assumes the base image directory is ./src/assets/img/
+ * - Generates responsive images using @11ty/eleventy-img.
+ * - Generated AVIF files are stored in .cache/img.
+ * - Netlify restores .cache/img between builds.
+ * - Eleventy Image skips processing when the hashed output already exists.
  */
 
 import Image from "@11ty/eleventy-img";
@@ -41,7 +35,7 @@ export default async function (
     widths: [1024, 1920],
     formats: ["avif"],
     urlPath: `${Config.BASEPATH}/assets/img`,
-    outputDir: "dist/assets/img",
+    outputDir: ".cache/img",
   });
 
   const sizes = "100vw";
@@ -54,25 +48,25 @@ export default async function (
       .join(", ");
 
     return `<link
-      rel="preload"
-      as="image"
-      fetchpriority="high"
-      type="image/avif"
-      imagesizes="${sizes}"
-      href="${avif[0].url}"
-      imagesrcset="${srcset}"
-    >`;
+  rel="preload"
+  as="image"
+  fetchpriority="high"
+  type="image/avif"
+  imagesizes="${sizes}"
+  href="${avif[0].url}"
+  imagesrcset="${srcset}"
+>`;
   }
 
   if (strategy === "prefetch") {
     const avif = metadata.avif;
 
     return `<link
-      rel="prefetch"
-      as="image"
-      type="image/avif"
-      href="${avif[0].url}"
-    >`;
+  rel="prefetch"
+  as="image"
+  type="image/avif"
+  href="${avif[0].url}"
+>`;
   }
 
   return Image.generateHTML(metadata, {
