@@ -39,7 +39,7 @@ export default async function (
   const metadata = await Image(`./src/assets/img/${src}`, {
     transformOnRequest: process.env.ELEVENTY_ENV === "dev",
     widths: [1024, 1920],
-    formats: ["webp"],
+    formats: ["avif"],
     urlPath: `${Config.BASEPATH}/assets/img`,
     outputDir: "dist/assets/img",
   });
@@ -47,9 +47,9 @@ export default async function (
   const sizes = "100vw";
 
   if (strategy === "preload") {
-    const webp = metadata.webp;
+    const avif = metadata.avif;
 
-    const srcset = webp
+    const srcset = avif
       .map((img) => `${img.url} ${img.width}w`)
       .join(", ");
 
@@ -57,21 +57,21 @@ export default async function (
       rel="preload"
       as="image"
       fetchpriority="high"
-      type="image/webp"
+      type="image/avif"
       imagesizes="${sizes}"
-      href="${webp[0].url}"
+      href="${avif[0].url}"
       imagesrcset="${srcset}"
     >`;
   }
 
   if (strategy === "prefetch") {
-    const webp = metadata.webp;
+    const avif = metadata.avif;
 
     return `<link
       rel="prefetch"
       as="image"
-      type="image/webp"
-      href="${webp[0].url}"
+      type="image/avif"
+      href="${avif[0].url}"
     >`;
   }
 
