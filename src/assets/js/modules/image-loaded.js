@@ -1,4 +1,4 @@
-const images = document.querySelectorAll("img");
+const images = document.querySelectorAll("main .image");
 
 function markAsLoaded(image) {
   image.classList.add("is-loaded");

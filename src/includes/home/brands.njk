@@ -7,14 +7,14 @@
         {% if page.data.title not in excluded %}
           <figure data-brand-id="{{page.data.title | slugify}}" data-cursor="Explore the {{page.data.title}} Case Study" data-cursor-color="white">
             <a href="{{ page.url | url }}">
-              {% img "case-studies/"~ page.data.title | slugify ~"/cover.jpg", "", "object-"~page.data.heroposition %}
+              {% img "case-studies/"~ page.data.title | slugify ~"/cover.jpg", page.data.title | safe, "object-"~page.data.heroposition %}
             </a>
           </figure>
         {% endif %}
       {% endfor %}
     </div>
 
-    <div class="columns justify-end">
+    <div class="columns justify-end" aria-hidden="true">
       <div class="md:columns-8">
         <ul>
           {% for page in collections.work | order %}
