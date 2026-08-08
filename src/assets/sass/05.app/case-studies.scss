@@ -4,7 +4,7 @@
   --spacer: var(--size-2xl);
 
   padding-top: var(--header-height);
-  padding-bottom: var(--spacer);
+  padding-bottom: var(--size-10xl);
 
   &__clients {
     position: sticky;
@@ -80,6 +80,8 @@
   }
 
   @include mq(md) {
+    padding-bottom: var(--spacer);
+
     .parallax {
       height: calc(100lvh - var(--header-height) - var(--spacer));
     }

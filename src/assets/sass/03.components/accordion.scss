@@ -18,10 +18,11 @@ details {
   summary {
     position: relative;
     outline: none;
+    text-wrap: balance;
 
     cursor: pointer;
     list-style: none;
-    padding: var(--size-4xl) 0;
+    padding: var(--size-4xl) var(--size-4xl) var(--size-4xl) 0;
 
     font-size: var(--font-size-3xl);
     font-variation-settings: var(--font-weight-semibold);
@@ -31,10 +32,6 @@ details {
     color: light-dark(var(--color-heavymetal), var(--color-white));
     transition: color 300ms;
 
-    &::-webkit-details-marker {
-      display: none;
-    }
-
     &::after {
       content: '';
 
@@ -43,12 +40,16 @@ details {
       top: 50%;
       translate: 0% -50%;
 
-      width: 24px;
-      height: 24px;
+      width: var(--size-xl);
+      height: var(--size-xl);
       background-color: currentColor;
       border-radius: 50%;
 
       transition: background-color 300ms;
+    }
+
+    &::-webkit-details-marker {
+      display: none;
     }
   }
 

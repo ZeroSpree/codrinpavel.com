@@ -54,9 +54,12 @@
   position: fixed;
   inset: 0;
   z-index: 9999;
+
   background: var(--color-sage);
-  translate: 0 100%;
-  transition: translate 1.1s cubic-bezier(0.76, 0, 0.24, 1);
+
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 1.1s cubic-bezier(0.76, 0, 0.24, 1);
+
   pointer-events: none;
 
   &--home {
@@ -64,7 +67,7 @@
   }
 
   &.is-active {
-    translate: 0 0;
+    clip-path: inset(0 0 0 0);
   }
 
   @media (prefers-reduced-motion: reduce) {

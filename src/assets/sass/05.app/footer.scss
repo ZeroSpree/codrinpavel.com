@@ -1,12 +1,17 @@
 .footer {
   position: relative;
-  min-height: 101lvh;
+  min-height: 100lvh;
   view-timeline-name: --footer;
-  view-timeline-axis: block;
 
   &__wrapper {
     position: fixed;
     inset: 0;
+  }
+
+  &__wrapper,
+  .wrapper {
+    background-color: var(--color-surface-dark);
+    height: 100lvh;
   }
 
   .wrapper {
@@ -16,6 +21,7 @@
   }
 }
 
+.footer--light .wrapper,
 .footer--light .footer__wrapper {
   background-color: light-dark(var(--color-surface-light), var(--color-midnight));
   color: var(--color-text-dark);
@@ -30,11 +36,11 @@
 @keyframes footer-parallax {
   from {
     filter: blur(1px) brightness(0.5);
-    transform: translateY(3lvh) scale(1.01);
+    transform: scale(1.01);
   }
 
   to {
     filter: blur(0px) brightness(1);
-    transform: translateY(0) scale(1);
+    transform: scale(1);
   }
 }
