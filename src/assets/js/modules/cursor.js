@@ -7,14 +7,36 @@ const cursor = document.querySelector(".cursor");
 if (supportsCursor && cursor) {
   const cursorTitle = cursor.querySelector(".cursor__title");
   const cursorImages = cursor.querySelector(".cursor__images");
+  const imageTriggers = document.querySelectorAll("[data-cursor-image]");
 
-  document.querySelectorAll("[data-cursor-image]").forEach(trigger => {
+  imageTriggers.forEach(trigger => {
     const image = document.getElementById(trigger.dataset.cursorImage);
 
     if (!image || !cursorImages) return;
 
     image.classList.remove("hidden");
     cursorImages.append(image);
+  });
+
+  const imageObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+
+      const trigger = entry.target;
+      const image = document.getElementById(trigger.dataset.cursorImage);
+      const lazyImage = image?.querySelector("img[data-src]");
+
+      if (lazyImage) {
+        lazyImage.src = lazyImage.dataset.src;
+        lazyImage.removeAttribute("data-src");
+      }
+
+      imageObserver.unobserve(trigger);
+    });
+  });
+
+  imageTriggers.forEach(trigger => {
+    imageObserver.observe(trigger);
   });
 
   const cursorEase = 0.1;
@@ -71,7 +93,9 @@ if (supportsCursor && cursor) {
 
     cursor.dataset.mode = "title";
 
-    cursorTitle.style.color = `var(--color-${trigger.dataset.cursorColor})` || "";
+    cursorTitle.style.color =
+      `var(--color-${trigger.dataset.cursorColor})` || "";
+
     typeCursorTitle(trigger.dataset.cursor ?? "");
   }
 
@@ -105,6 +129,7 @@ if (supportsCursor && cursor) {
       `translate3d(${cursorX + 20}px, ${cursorY}px, 0)`;
 
     const element = document.elementFromPoint(pointerX, pointerY);
+
     const trigger =
       element?.closest("[data-cursor], [data-cursor-image]") ?? null;
 

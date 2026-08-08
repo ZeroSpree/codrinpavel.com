@@ -59,7 +59,13 @@ eleventyComputed:
 
           {% if not client.projects[0].nothumb == true %}
             <figure id="archive-{{client.client | slugify}}" class="hidden" aria-hidden="true">
-              {% img "thumbs/archive/"~ client.client|slugify ~"-"~client.projects[0].project|slugify~"-"~client.projects[0].year~".jpg", "", "", "eager" %}
+              <img 
+                data-src="{% img 'thumbs/archive/'~ client.client|slugify ~'-'~client.projects[0].project|slugify~'-'~client.projects[0].year~'.jpg', '', '', 'lazy', 'url' %}" 
+                class="image" 
+                alt="" 
+                loading="lazy" 
+                fetchpriority="auto"
+                decoding="async">
             </figure>
           {% endif %}
         </li>
