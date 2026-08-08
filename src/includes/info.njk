@@ -65,7 +65,7 @@
             <span class="color-text-light">Read Case Study →</span>
           </a>
           <figure id="{{page.data.title | slugify}}" class="hidden" aria-hidden="true">
-            {% img "thumbs/case-studies/"~ page.data.title | slugify ~".jpg", "", "", "eager" %}
+            {% img "thumbs/case-studies/"~ page.data.title | slugify ~".jpg" %}
           </figure>
         </li>
       {% endfor %}
