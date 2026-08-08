@@ -171,7 +171,7 @@ eleventyComputed:
                 {% img image_url ~ item.src %}
               {% elseif item.type === "video" %}
                 <video 
-                  src="{{ video_url ~ item.src | url }}" 
+                  data-src="{{ video_url ~ item.src | url }}" 
                   poster="{% img image_url ~ 'poster-' ~ item.src | replace('mp4', 'png'), '', '', 'lazy', 'url' %}"
                   muted 
                   loop 
@@ -203,7 +203,7 @@ eleventyComputed:
             {% img image_url ~ block.src %}
           {% elseif block.type === "video" %}
             <video 
-              src="{{ video_url ~ block.src | url }}" 
+              data-src="{{ video_url ~ block.src | url }}" 
               poster="{% img image_url ~ 'poster-' ~ block.src | replace('mp4', 'png'), '', '', 'lazy', 'url' %}"
               muted 
               loop 
