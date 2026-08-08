@@ -38,35 +38,38 @@ export default async function (
     outputDir: ".cache/img",
   });
 
+  const avif = metadata.avif;
   const sizes = "100vw";
 
-  if (strategy === "preload") {
-    const avif = metadata.avif;
+  if (strategy === "url") {
+    return avif.at(-1).url;
+  }
 
+  if (strategy === "preload") {
     const srcset = avif
       .map((img) => `${img.url} ${img.width}w`)
       .join(", ");
 
     return `<link
-  rel="preload"
-  as="image"
-  fetchpriority="high"
-  type="image/avif"
-  imagesizes="${sizes}"
-  href="${avif[0].url}"
-  imagesrcset="${srcset}"
->`;
+      rel="preload"
+      as="image"
+      fetchpriority="high"
+      type="image/avif"
+      imagesizes="${sizes}"
+      href="${avif[0].url}"
+      imagesrcset="${srcset}"
+    >`;
   }
 
   if (strategy === "prefetch") {
     const avif = metadata.avif;
 
     return `<link
-  rel="prefetch"
-  as="image"
-  type="image/avif"
-  href="${avif[0].url}"
->`;
+      rel="prefetch"
+      as="image"
+      type="image/avif"
+      href="${avif[0].url}"
+    >`;
   }
 
   return Image.generateHTML(metadata, {

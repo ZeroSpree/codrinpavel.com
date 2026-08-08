@@ -72,4 +72,8 @@ if (!prefersReducedMotion.matches) {
 
     window.location.href = url.href;
   });
+
+  window.addEventListener("pageshow", () => {
+    pageTransition?.classList.remove("is-active");
+  });
 }

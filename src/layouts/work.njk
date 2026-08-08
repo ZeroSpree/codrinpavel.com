@@ -91,7 +91,14 @@ eleventyComputed:
   <div class="wrapper overflow-hidden" data-header-theme="dark">
     <figure class="scroll-reveal">
       {% if hero_video %}
-        <video width="1440" height="900" data-src="{{ video_url ~ hero_video | url }}" muted playsinline loop></video>
+        <video 
+          width="1440" 
+          height="900" 
+          data-src="{{ video_url ~ hero_video | url }}" 
+          poster="{% img image_url ~ 'poster-' ~ hero_video | replace('mp4', 'png'), '', '', 'lazy', 'url' %}"
+          muted 
+          playsinline 
+          loop></video>
       {% endif %}
       {% if hero_image %}
         {% img image_url ~ hero_image %}
