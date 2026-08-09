@@ -1,5 +1,4 @@
 import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
 import terser from '@rollup/plugin-terser';
 import postcss from 'rollup-plugin-postcss';
 import autoprefixer from 'autoprefixer';
@@ -58,7 +57,6 @@ export default [
     },
     plugins: [
       resolve(), // for importing node_modules dependencies, such as cash-dom
-      commonjs(), // jquery doesn't support esm imports
       !dev && terser()
     ]
   },
