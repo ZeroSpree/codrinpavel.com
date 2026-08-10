@@ -89,7 +89,7 @@ eleventyComputed:
   </header>
   
   <div class="wrapper overflow-hidden" data-header-theme="dark">
-    <figure class="scroll-reveal">
+    <figure data-reveal>
       {% if hero_video %}
         <video 
           width="1440" 
@@ -184,7 +184,7 @@ eleventyComputed:
       {% elseif block.type === "quote" %}
         {% for quote in words %}
           {% if quote.project == long or quote.project == title %}
-            <figure class="quote scroll-reveal mb-10xl">
+            <figure data-reveal class="quote mb-10xl">
               <blockquote class="type-large" data-reveal-batch>
                 <p class="word-split">{{quote.content | safe}}</p>
               </blockquote>
@@ -198,7 +198,7 @@ eleventyComputed:
         {% endfor %}
 
       {% else %}
-        <figure class="scroll-reveal mb-10xl">
+        <figure data-reveal class="mb-10xl">
           {% if block.type === "image" %}
             {% img image_url ~ block.src %}
           {% elseif block.type === "video" %}

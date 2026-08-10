@@ -2,7 +2,7 @@
 
 <section class="brands" data-header-theme="dark">
   <div class="wrapper">
-    <div class="brands__media scroll-reveal squish">
+    <div class="brands__media squish">
       {% for page in collections.work | order %}
         {% if page.data.title not in excluded %}
           <figure data-brand-id="{{page.data.title | slugify}}" data-cursor="Explore the {{page.data.title}} Case Study" data-cursor-color="white">
