@@ -1,22 +1,61 @@
-<section class="pt-11xl pb-11xl" data-header-theme="midnight">
+<section>
   <div class="wrapper">
-    <div class="columns justify-end">
-      <div class="md:columns-8">
-        <p class="word-split type-large" data-title="Capabilities" data-reveal-batch>I started my career building government software, so <span class="color-text-highlight">accessibility</span>, <span class="color-text-highlight">performance</span>, and <span class="color-text-highlight">attention to detail</span> have been a fundamental part of my work from day one. {#My work combines creative exploration with a genuine passion for turning designs into interfaces that work for everyone.#} I've called it my <span class="color-text-highlight">professional hobby</span> for nearly two decades.</p>
+    <div class="columns pt-11xl pb-11xl" data-header-theme="midnight">
+      <div class="md:columns-8 md:ml-2 type-medium pb-8xl color-text-dark opacity-75">
+        <strong class="block" data-reveal>Creative Developer.</strong>
+        <strong class="block" data-reveal>Pixel-perfect.</strong>
+        <strong class="block" data-reveal>Built for everyone.</strong>
+      </div>
 
-        <div class="mt-10xl">
-          {% for item in capabilities %}
-            <details name="capabilities" data-reveal>
-              <summary>{{item.title | safe}} <span class="icon"></span></summary>
+      <div class="md:columns-8 md:ml-4">
+        <p class="word-split type-larger" data-title="Hi, I'm Codrin" data-reveal-batch>I bring creative ideas to life. Together, we will turn your designs into fast, accessible interfaces that feel great and stand out.</p>
+        {#
+        <p class="word-split type-large" data-title="Focus" data-reveal-batch>I started my career building government software, where accessibility, performance, and web standards were part of the work from day one. I didn’t know it back then, but those fundamentals would go on to define how I approach every project over the next 17 years.</p>
+        #}
+      </div>
+    </div>
 
-              <div class="accordion__content">
-                <div class="type-medium accordion__content-inner">
-                  <p>{{item.description | safe}}</p>
+    <div class="services" data-header-theme="light">
+      <div class="columns">
+        <div class="md:columns-10 md:ml-2 lg:pr-4xl">
+          {# 
+          <h2 class="word-split type-larger" data-title="Capabilities" data-reveal-batch>My work combines creative coding with technical precision and a genuine passion for the web. I've called it my <span class="color-sage">"professional hobby"</span> for nearly two decades.</h2>
+          #}
+          <h2 class="word-split type-larger" data-title="Capabilities" data-reveal-batch>I work at the intersection of design and development, fueled by ice cream and a genuine passion for the web. I’ve called it my <span class="color-sage">“professional hobby”</span> for nearly two decades.</h2>
+        </div>
+      </div>
+
+      <div class="capabilities">
+        {% for item in capabilities %}
+          <div class="capability">
+            <div class="columns">
+              <div class="md:columns-2">
+                <span class="color-sage type-eyebrow" data-reveal>(0{{loop.index}})</span>
+              </div>
+              <div class="md:columns-4">
+                <h3 class="word-split type-larger" data-reveal-batch>{{item.title | safe}}</h3>
+              </div>
+              <div class="md:columns-5 mt-2xl md:mt-zero">
+                <p class="type-medium word-split" data-reveal-batch>{{item.description | safe}}</p>
+                <div class="flex flex-wrap gap-md mt-2xl" data-reveal-batch>
+                  {% for tag in item.tags %}
+                    <span class="tag" data-reveal>{{tag}}</span>
+                  {% endfor %}
                 </div>
               </div>
-            </details>
-          {% endfor %}
-        </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pt-11xl pb-11xl" data-header-theme="midnight">
+  <div class="wrapper">
+    <div class="columns">
+      <div class="md:columns-8 ml-auto">
+        <p class="word-split type-larger" data-reveal-batch data-title="Work">I started out building government software. Many years later, my work spans major media platforms, corporate communications, healthcare, nonprofits, and a long list of clients I’m proud to have worked with.</p>
       </div>
     </div>
   </div>

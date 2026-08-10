@@ -1,22 +1,61 @@
 export default [
   {
-    "title": "Design to Development",
-    "description": "Working closely with designers and creative teams is the part of my work I enjoy most. My experience covers technically demanding builds, design systems, complex responsive behavior, motion, and interaction."
+    "title": "Design to Dev",
+    "description": "I work closely with designers and creative teams on technically demanding builds, design systems, responsive behavior, motion, and interaction.",
+    "tags": [
+      "Figma to Code",
+      "Design Systems",
+      "Design Tokens",
+      "Motion & Interaction",
+      "Responsive Design",
+    ]
   },
   {
-    "title": "Complete Website Builds",
-    "description": "I’ve led and independently delivered microsites, corporate reports, and large media platforms. I work directly with creatives, managers, and clients throughout the build and after launch, supporting ongoing development, maintenance, and improvements."
+    "title": "Complete Builds",
+    "description": "I’ve led and independently delivered microsites, corporate reports, and large media platforms, working with teams from development through launch and ongoing support.",
+    "tags": [
+      "Microsites",
+      "Corporate Reports",
+      "Editorial Platforms",
+      "CMS Integration",
+      "Frontend Architecture",
+      "Ongoing Support"
+    ]
   },
   {
-    "title": "Accessibility & WCAG Compliance",
-    "description": "My experience in accessibility work spans two major airlines, public services software, healthcare organizations, and Fortune 500 companies. Much of this work has been independently audited, giving me strong track record of building to WCAG requirements in real-world projects."
+    "title": "Accessibility",
+    "description": "My accessibility work spans major airlines, public services, and Fortune 500 companies, with many projects independently audited for WCAG compliance.",
+    "tags": [
+      "WCAG",
+      "Inclusive Design",
+      "ARIA",
+      "Semantic HTML",
+      "Keyboard Navigation",
+      "Screen Readers",
+    ]
   },
   {
-    "title": "Performance & Core Web Vitals",
-    "description": "Performance has been part of my frontend practice for over 17 years. I keep JavaScript and dependencies to a minimum, work with native browser features wherever possible, and treat performance as part of the build rather than something to fix before launch."
+    "title": "Performance",
+    "description": "Performance has been part of my practice for over 17 years. I keep dependencies to a minimum, favor native browser features, and build for performance from the start.",
+    "tags": [
+      "Core Web Vitals",
+      "Rendering Performance",
+      "Lighthouse",
+      "Lazy Loading",
+      "Asset Optimization",
+      "Native Web APIs"
+    ]
   },
   {
     "title": "Motion & Interaction",
-    "description": "I build page transitions, scroll-driven sequences, and smaller interface interactions using CSS and native browser APIs wherever possible. Years of frontend work have given me a strong sense for timing, movement, and small details that make interactions feel right."
+    "description": "I build page transitions, scroll-driven sequences, and interface interactions with CSS and native browser APIs, with careful attention to timing, movement, and detail.",
+    "tags": [
+      "CSS Animations",
+      "Scroll-Driven Motion",
+      "Motion Systems",
+      "Microinteractions",
+      "Animation Performance",
+      "Reduced Motion"
+    ]
   }
 ]

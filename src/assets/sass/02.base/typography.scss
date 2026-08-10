@@ -54,6 +54,13 @@ body,
   }
 }
 
+.type-larger {
+  font-size: var(--font-size-4xl);
+  font-variation-settings: var(--font-weight-normal);
+  line-height: 1.15;
+  letter-spacing: -.02em;
+}
+
 .type-xlarge {
   font-size: var(--font-size-6xl);
   font-style: normal;

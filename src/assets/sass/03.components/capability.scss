@@ -1,0 +1,44 @@
+.services {
+  background: light-dark(var(--color-midnight), var(--color-heavymetal));
+  color: var(--color-white);
+  padding: var(--size-10xl) var(--size-ml) var(--size-ml);
+  border-radius: calc(var(--radius-ml) * 1.3);
+}
+
+.capabilities {
+  margin-top: var(--size-10xl);
+  background: light-dark(var(--color-heavymetal), var(--color-midnight));
+  color: var(--color-white);
+  border-radius: var(--radius-ml);
+
+  p {
+    color: var(--color-sage);
+  }
+}
+
+.capability {
+  padding: var(--size-6xl) var(--size-xl);
+  position: relative;
+
+  .columns {
+    opacity: 0;
+
+    animation-name: capability-active;
+    animation-timeline: view();
+    animation-range: entry 0% exit 150%;
+  }
+
+  &:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    inset: auto var(--size-xl) 0;
+    background-color: light-dark(var(--color-midnight), var(--color-heavymetal));
+    height: 1px;
+  }
+}
+
+@keyframes capability-active {
+  50% {
+    opacity: 1;
+  }
+}
