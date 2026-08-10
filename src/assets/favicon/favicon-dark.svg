@@ -1,6 +1,6 @@
 <svg viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
   <style>
-    .favicon__bg { fill: #000; stroke: #fff }
+    .favicon__bg { fill: #2d312a; stroke: #a6a999 }
   </style>
   <rect 
     class="favicon__bg" 
