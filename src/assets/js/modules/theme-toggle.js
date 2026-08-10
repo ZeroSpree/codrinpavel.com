@@ -1,5 +1,6 @@
 const root = document.documentElement;
 const toggles = document.querySelectorAll(".theme-toggle");
+const favicon = document.querySelector('link[rel="icon"]');
 
 function updateToggles() {
   const isDark = root.dataset.theme === "dark";
@@ -12,6 +13,13 @@ function updateToggles() {
 
     toggle.setAttribute("aria-pressed", String(isDark));
   });
+
+  if (favicon) {
+    favicon.href = favicon.href.replace(
+      /favicon(?:-dark)?\.svg$/,
+      isDark ? "favicon-dark.svg" : "favicon.svg"
+    );
+  }
 }
 
 toggles.forEach(toggle => {
