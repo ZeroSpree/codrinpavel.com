@@ -6,7 +6,6 @@ if (items.length) {
   const stagger = 75;
 
   let current = 0;
-  let timeout;
 
   items.forEach(item => {
     item.style.userSelect = "none";
@@ -15,14 +14,15 @@ if (items.length) {
 
   function animateItem(item) {
     const words = item.querySelectorAll("[data-reveal]");
-
-    const staggerDuration = (words.length - 1) * stagger;
+    const staggerDuration = Math.max(0, words.length - 1) * stagger;
     const visibleDuration = fade + hold + fade + staggerDuration;
 
     item.style.userSelect = "text";
     item.style.pointerEvents = "auto";
 
     words.forEach((word, index) => {
+      word.getAnimations().forEach(animation => animation.cancel());
+
       word.animate(
         [
           {
@@ -66,7 +66,7 @@ if (items.length) {
       });
     }, fade + hold);
 
-    timeout = setTimeout(() => {
+    setTimeout(() => {
       item.style.userSelect = "none";
       item.style.pointerEvents = "none";
 

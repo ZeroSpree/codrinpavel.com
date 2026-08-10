@@ -5,7 +5,7 @@ const brands = document.querySelector(".brands");
 if (brands) {
   const items = [...brands.querySelectorAll("li[data-brand-id]")];
   const imagesByBrandId = new Map(
-    [...document.querySelectorAll("figure[data-brand-id]")].map(image => [
+    [...brands.querySelectorAll("figure[data-brand-id]")].map(image => [
       image.dataset.brandId,
       image,
     ])

@@ -17,6 +17,7 @@
     clip-path: inset(0 0 100%);
     transition: clip-path 600ms;
     will-change: clip-path;
+    -webkit-backface-visibility: hidden;
 
     &__nav {
       li {

@@ -3,7 +3,7 @@
  *
  * [data-reveal], [data-inview]: Reveals on scroll. Adds `is-inview` and `--transition-delay`.
  * [data-delay="200"]: Delay before this element reveals. Default: 0ms.
- * [data-stagger="50"] Time added before the next element reveals. Default: 25ms.
+ * [data-stagger="50"] Time added before the next element reveals. Default: 125ms.
  * [data-reveal-batch] Batch container. Once it starts, all child reveal elements animate, even if they are not in the viewport.
  * [data-reveal-batch-max="1000"] Maximum time following elements wait for this batch. Default: 1000ms.
  */
@@ -33,8 +33,12 @@ function initReveals() {
 
   elementOrder = new Map(elements.map((el, index) => [el, index]));
 
+  if (revealFrame) {
+    cancelAnimationFrame(revealFrame);
+    revealFrame = 0;
+  }
+
   queued.clear();
-  revealFrame = 0;
 
   if (!("IntersectionObserver" in window)) {
     reveal(elements);
@@ -73,9 +77,7 @@ function initReveals() {
 
 function handleIntersect(entries) {
   const entering = entries
-    .filter(entry => {
-      return entry.isIntersecting;
-    })
+    .filter(entry => entry.isIntersecting)
     .map(entry => entry.target);
 
   if (!entering.length) return;

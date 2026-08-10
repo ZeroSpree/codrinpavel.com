@@ -1,3 +1,5 @@
+import { onLenisFrame } from "./lenis.js";
+
 const supportsCursor = matchMedia(
   "(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)"
 ).matches;
@@ -8,15 +10,6 @@ if (supportsCursor && cursor) {
   const cursorTitle = cursor.querySelector(".cursor__title");
   const cursorImages = cursor.querySelector(".cursor__images");
   const imageTriggers = document.querySelectorAll("[data-cursor-image]");
-
-  imageTriggers.forEach(trigger => {
-    const image = document.getElementById(trigger.dataset.cursorImage);
-
-    if (!image || !cursorImages) return;
-
-    image.classList.remove("hidden");
-    cursorImages.append(image);
-  });
 
   const imageObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -36,6 +29,13 @@ if (supportsCursor && cursor) {
   });
 
   imageTriggers.forEach(trigger => {
+    const image = document.getElementById(trigger.dataset.cursorImage);
+
+    if (!image || !cursorImages) return;
+
+    image.classList.remove("hidden");
+    cursorImages.append(image);
+
     imageObserver.observe(trigger);
   });
 
@@ -93,8 +93,9 @@ if (supportsCursor && cursor) {
 
     cursor.dataset.mode = "title";
 
-    cursorTitle.style.color =
-      `var(--color-${trigger.dataset.cursorColor})` || "";
+    cursorTitle.style.color = trigger.dataset.cursorColor
+      ? `var(--color-${trigger.dataset.cursorColor})`
+      : "";
 
     typeCursorTitle(trigger.dataset.cursor ?? "");
   }
@@ -175,10 +176,7 @@ if (supportsCursor && cursor) {
     requestCursorUpdate();
   });
 
-  document.addEventListener("scroll", requestCursorUpdate, {
-    passive: true,
-    capture: true
-  });
+  onLenisFrame(requestCursorUpdate);
 
   document.documentElement.addEventListener("pointerleave", hideCursor);
   window.addEventListener("blur", hideCursor);

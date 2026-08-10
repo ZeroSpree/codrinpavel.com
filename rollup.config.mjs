@@ -53,7 +53,7 @@ export default [
     output: {
       file: "dist/assets/min/main.min.js",
       sourcemap: false,
-      format: dev ? "iife" : "esm",
+      format: "iife",
     },
     plugins: [
       resolve(), // for importing node_modules dependencies, such as cash-dom

@@ -1,5 +1,5 @@
 {%- if global.environment == "production" -%}
---INLINE JS--
+  --INLINE JS--
 {% else %}
-<script type="module" src="/assets/min/main.min.js"></script>
+  <script src="/assets/min/main.min.js"></script>
 {%- endif -%}

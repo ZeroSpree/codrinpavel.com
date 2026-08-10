@@ -2,26 +2,30 @@ import lenis from "./lenis";
 
 const rootStyles = getComputedStyle(document.documentElement);
 const links = [...document.querySelectorAll("a[data-scroll-to]")];
-const images = links
-  .map(link => document.getElementById(link.dataset.scrollTo))
-  .filter(Boolean);
+
+const items = links
+  .map(link => ({
+    link,
+    image: document.getElementById(link.dataset.scrollTo),
+  }))
+  .filter(item => item.image);
 
 let headerHeight;
 let progressRange;
 
 function updateMeasurements() {
-  headerHeight = parseFloat(rootStyles.getPropertyValue("--header-height"));
+  headerHeight = parseFloat(
+    rootStyles.getPropertyValue("--header-height")
+  );
+
   progressRange = Math.max(1, window.innerHeight - headerHeight);
 }
 
 function updateClientProgress() {
-  images.forEach(image => {
+  items.forEach(({ link, image }) => {
     const rect = image.getBoundingClientRect();
     const distance = Math.abs(rect.top - headerHeight);
     const progress = Math.max(0, 1 - distance / progressRange);
-    const link = document.querySelector(`a[data-scroll-to="${image.id}"]`);
-
-    if (!link) return;
 
     link.style.setProperty("--progress", `${progress * 100}%`);
     link.classList.toggle("is-past", rect.top < headerHeight);
@@ -29,10 +33,13 @@ function updateClientProgress() {
 }
 
 function scrollToTarget(event) {
-  const link = event.currentTarget;
-  const target = document.getElementById(link.dataset.scrollTo);
+  const target = document.getElementById(
+    event.currentTarget.dataset.scrollTo
+  );
 
-  if (target) lenis.scrollTo(target);
+  if (target) {
+    lenis.scrollTo(target);
+  }
 }
 
 links.forEach(link => {

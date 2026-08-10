@@ -37,7 +37,5 @@ function createHeaderThemeObserver() {
   themedElements.forEach(element => observer.observe(element));
 }
 
-setHeaderTheme();
 createHeaderThemeObserver();
-
 window.addEventListener("resize", createHeaderThemeObserver);
