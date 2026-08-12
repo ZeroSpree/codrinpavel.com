@@ -46,9 +46,7 @@ export default async function (
   }
 
   if (strategy === "preload") {
-    const srcset = avif
-      .map((img) => `${img.url} ${img.width}w`)
-      .join(", ");
+    const srcset = avif.map((img) => `${img.url} ${img.width}w`).join(", ");
 
     return `<link
       rel="preload"
@@ -62,14 +60,7 @@ export default async function (
   }
 
   if (strategy === "prefetch") {
-    const avif = metadata.avif;
-
-    return `<link
-      rel="prefetch"
-      as="image"
-      type="image/avif"
-      href="${avif[0].url}"
-    >`;
+    return `<link rel="prefetch" as="image" type="image/avif" href="${avif[0].url}">`;
   }
 
   return Image.generateHTML(metadata, {

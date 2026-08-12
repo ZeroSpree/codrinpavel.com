@@ -17,6 +17,7 @@
   @include meta.load-css("brands");
   @include meta.load-css("words");
   @include meta.load-css("capability");
+  @include meta.load-css("pagination");
 
   // animations
   @include meta.load-css('preloader');

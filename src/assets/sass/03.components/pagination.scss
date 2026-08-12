@@ -1,0 +1,49 @@
+.case-study .pagination {
+  a {
+    display: block;
+    padding: var(--size-ml);
+
+    background-color: light-dark(var(--color-midnight), var(--color-heavymetal));
+    border-radius: var(--radius-ml);
+    color: var(--color-white);
+
+    &:first-child {
+      text-align: right;
+
+      .tag {
+        inset: auto var(--size-ml) var(--size-ml) auto;
+      }
+    }
+
+    &:hover,
+    &:focus-visible {
+      .image {
+        scale: 1.1;
+        filter: brightness(100%);
+      }
+    }
+  }
+
+  figure {
+    position: relative;
+    overflow: clip;
+
+    .tag {
+      position: absolute;
+      inset: auto auto var(--size-ml) var(--size-ml);
+    }
+  }
+
+  .image {
+    transition: filter 600ms, opacity 600ms, scale 600ms !important;
+    aspect-ratio: 3/2;
+    scale: 1;
+    filter: brightness(75%);
+  }
+
+  &__meta {
+    padding: var(--size-lg) var(--size-ml) 0;
+  }
+
+  h2 {}
+}

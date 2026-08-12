@@ -7,9 +7,9 @@ pageclasses: "page-interior"
 eleventyComputed:
   preload: "case-studies/{{title|slugify}}/cover.jpg"
 ---
-
-{% set previousPost = collections.work | order | getPreviousCollectionItem %}
-{% set nextPost = collections.work | order | getNextCollectionItem %}
+{% set work = collections.work | order %}
+{% set previousPost = work | getPreviousCollectionItem or work[work.length-1] %}
+{% set nextPost = work | getNextCollectionItem or work[0] %}
 
 {% set position %}{% if heroposition %}object-{{heroposition}}{%endif%}{%endset%}
 {% set video_url = "/assets/video/case-studies/"~title|slugify~"/" %}
@@ -26,7 +26,7 @@ eleventyComputed:
   {% endif %}
 {% endfor %}
 
-<article class="case-study">
+<article class="case-study pb-10xl">
   <header>
     <div class="parallax pb-2xl" data-header-theme="white">
       {% img "case-studies/"~title|slugify~"/cover.jpg", "", position, "eager" %}
@@ -214,5 +214,35 @@ eleventyComputed:
     {% endfor %}
   </div>
 
-  <footer class="pagination"></footer>
+  <footer class="wrapper pagination">
+    <p class="type-huge mb-xl" data-reveal>Explore</p>
+    {% macro navItem(item, image, text) %}
+      <a href="{{item.url | url}}" data-cursor="{{text}} Case Study" data-cursor-color="white" class="squish" data-reveal="image">
+        <figure>
+          {{image | safe}}
+
+          <figcaption>
+            <span class="tag">{{item.data.type | safe}}</span>
+          </figcaption>
+        </figure>
+
+        <div class="pagination__meta">
+          <span class="type-eyebrow color-sage">{{item.data.period | safe}}</span>
+          <h2 class="type-larger">{{(item.data.long or item.data.title) | safe}}</h2>
+        </div>
+      </a>
+    {% endmacro %}
+
+    <div class="columns md:columns-6">
+      {% setAsync "nextImage" %}
+        {% img "case-studies/" ~ nextPost.data.title | slugify ~ "/cover.jpg" %}
+      {% endsetAsync %}
+      {{ navItem(nextPost, nextImage, "Previous") }}
+
+      {% setAsync "prevImage" %}
+        {% img "case-studies/" ~ previousPost.data.title | slugify ~ "/cover.jpg" %}
+      {% endsetAsync %}
+      {{ navItem(previousPost, prevImage, "Next") }}
+    </div>
+  </footer>
 </article>
